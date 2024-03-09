@@ -20,3 +20,14 @@ const companyName: string = useGlobalDataStore().companyName;
         </div>
     </div>
 </template>
+
+<style lang="scss" scoped>
+
+@import '@/assets/colors.scss';
+
+.head-banner {
+    background: $accent1;
+    border-top: solid 1px $blackColor;
+    border-bottom: solid 1px $blackColor; 
+}
+</style>

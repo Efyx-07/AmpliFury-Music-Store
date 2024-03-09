@@ -1,3 +1,5 @@
+@import './colors.scss';
+
 *, 
 *:before, 
 *:after {
@@ -13,4 +15,6 @@ html {
 
 body {
     margin: 0 auto;
+    background: $whiteColor;
+    color: $blackColor;
 }

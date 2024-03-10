@@ -11,7 +11,7 @@ export const useCatalogueStore = defineStore('catalogue', {
 
     state: (): State => ({
         categories: [],
-        products: []
+        products: [],
     }),
 
     actions: {

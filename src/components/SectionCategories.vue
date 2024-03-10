@@ -5,7 +5,7 @@ import type { Category } from '@/types/CatalogueTypes';
 
 const catalogueStore = useCatalogueStore();
 
-const categories: Category[] = catalogueStore.products;
+const categories: Category[] = catalogueStore.categories;
 
 </script>
 

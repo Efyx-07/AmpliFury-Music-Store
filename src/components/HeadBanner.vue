@@ -13,7 +13,9 @@ const companyName: string = useGlobalDataStore().companyName;
                 <h1>{{ companyName }}</h1>
                 <p>Unleash Your Musical Passion</p>
             </div>
-            <button>Explore All</button>
+            <router-link to="/categories">
+                <button>Explore All</button>
+            </router-link>
         </div>
         <div class="image-container">
             <img src="/images/decoration/gorilla-rocker.png" alt="gorilla-rocker">

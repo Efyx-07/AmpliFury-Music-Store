@@ -1,16 +1,14 @@
 <script setup lang="ts">
-import { useCatalogueStore } from '@/stores/CatalogueStore';
+
+import Header from '@/components/Header.vue';
 import HeadBanner from '@/components/HeadBanner.vue';
 import SectionCategories from '@/components/SectionCategories.vue';
-
-const catalogueStore = useCatalogueStore();
-
-console.log(catalogueStore.products);
 
 </script>
 
 <template>
     <div class="page">
+        <Header />
         <HeadBanner />
         <SectionCategories />
     </div>

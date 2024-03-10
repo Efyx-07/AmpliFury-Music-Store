@@ -29,7 +29,7 @@ const companyName: string = useGlobalDataStore().companyName;
 
 .head-banner {
     background: $accent1;
-    border-top: solid 1px $blackColor;
     border-bottom: solid 1px $blackColor; 
 }
+
 </style>

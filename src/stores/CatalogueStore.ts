@@ -31,7 +31,7 @@ export const useCatalogueStore = defineStore('catalogue', {
         // obtient la liste de tous les produits du catalogue 
         getAllProducts(): Product[] {
             const products: Product[] = this.categories.flatMap(category => category.products);
-            this.products= products
+            this.products = products;
             return this.products;
         },
     },

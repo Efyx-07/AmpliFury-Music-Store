@@ -18,11 +18,9 @@ export const useCatalogueStore = defineStore('catalogue', {
 
         // récupère les datas du catalogue fetchées dans CatalogueApi
         async loadCatalogueData(): Promise<void> {
-
             try {
                 const catalogueData: Category[] = await api.fetchCatalogueData();
                 this.categories = catalogueData;
-
             } catch (error) {
                 console.error('Erreur lors du chargement des données: ', error);
             }

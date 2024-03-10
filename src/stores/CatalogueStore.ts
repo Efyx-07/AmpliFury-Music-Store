@@ -4,12 +4,14 @@ import type { Category, Product } from '@/types/CatalogueTypes';
 
 type State = {
     categories: Category[];
+    products: Product[];
 }
 
 export const useCatalogueStore = defineStore('catalogue', {
 
     state: (): State => ({
         categories: [],
+        products: []
     }),
 
     actions: {
@@ -29,7 +31,8 @@ export const useCatalogueStore = defineStore('catalogue', {
         // obtient la liste de tous les produits du catalogue 
         getAllProducts(): Product[] {
             const products: Product[] = this.categories.flatMap(category => category.products);
-            return products;
+            this.products= products
+            return this.products;
         },
     },
 });

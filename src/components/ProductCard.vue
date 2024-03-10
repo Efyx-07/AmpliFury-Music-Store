@@ -12,7 +12,7 @@ const products: Product[] = catalogueStore.getAllProducts();
 <template>
     <div class="product-card" v-for="product in products" :key="product.id">
         <div class="image-container">
-            <img :src="`/images` + product.image_source" alt="">
+            <img :src="`/images` + product.image_source" alt="product.image_alt">
         </div>
         <p>{{ product.brand }}</p>
     </div>

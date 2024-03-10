@@ -1,11 +1,11 @@
 <script setup lang="ts">
 
 import { RouterView } from 'vue-router';
-import Header from '@/components/Header.vue';
+import SiteHeader from '@/components/SiteHeader.vue';
 
 </script>
 
 <template>
-  <Header />
+  <SiteHeader />
   <RouterView />
 </template>

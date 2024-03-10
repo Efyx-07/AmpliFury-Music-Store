@@ -1,7 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+
+import StoreLogo from '@/sub-components/StoreLogo.vue';
+
+</script>
 
 <template>
     <header>
+        <StoreLogo />
     </header>
 </template>
 

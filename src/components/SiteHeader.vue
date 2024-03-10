@@ -1,12 +1,14 @@
 <script setup lang="ts">
 
 import StoreLogo from '@/sub-components/StoreLogo.vue';
+import SiteNav from '@/sub-components/SiteNav.vue';
 
 </script>
 
 <template>
     <header>
         <StoreLogo />
+        <SiteNav />
     </header>
 </template>
 
@@ -23,6 +25,9 @@ header {
     top: 0;
     left: 0;
     z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 </style>

@@ -13,7 +13,7 @@ const companyName: string = useGlobalDataStore().companyName;
                 <h1>{{ companyName }}</h1>
                 <p>Unleash Your Musical Passion</p>
             </div>
-            <router-link to="/categories">
+            <router-link to="/catalogue">
                 <button>Explore All</button>
             </router-link>
         </div>

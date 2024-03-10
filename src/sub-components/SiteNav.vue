@@ -10,12 +10,12 @@ const categories: Category[] = useCatalogueStore().categories;
 <template>
     <div class="navItems-container">
         <div class="navItem">
-            <router-link to="/product-categories">
+            <router-link to="/catalogue">
                 <p>All products</p>
             </router-link>
         </div>
         <div class="navItem" v-for="category in categories" :key="category.name">
-            <router-link :to="`/product-categories/${category.name}`">
+            <router-link :to="`/catalogue/${category.name}`">
                 <p>{{ category.name }}</p>
             </router-link>
         </div>

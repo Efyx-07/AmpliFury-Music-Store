@@ -4,7 +4,7 @@ import ProductCard from '@/components/ProductCard.vue';
 import { useCatalogueStore } from '@/stores/CatalogueStore';
 import type { Product } from '@/types/CatalogueTypes';
 import { useRoute } from 'vue-router';
-import { computed } from 'vue';
+import { computed, ref, watch } from 'vue';
 
 const catalogueStore = useCatalogueStore();
 
@@ -25,11 +25,68 @@ const pageTitle = computed<string | string[]>(() => {
 // filtre les produits selon la catégorie
 const filteredProducts = computed<Product[]>(() => {
     const category: string | string[] = categoryFilter.value;
-    if (category && category !== 'all') {
-        return products.filter(product => product.type === category);
+    return category === 'all' ? products : products.filter(product => product.type === category);
+});
+
+// interface pour le bouton select
+interface SelectOption {
+    value: string;
+    mention: string;
+};
+
+const selectOptions: SelectOption [] = [
+    {
+        value: 'random',
+        mention: 'Random'
+    },
+    {
+        value: 'priceAsc',
+        mention: 'Price: low to high'
+    },
+    {
+        value: 'priceDesc',
+        mention: 'Price: high to low'
+    },
+    {
+        value: 'alphaAsc',
+        mention: 'Alphabet: A to Z'
+    },
+    {
+        value: 'alphaDesc',
+        mention: 'Alphabet: Z to A'
+    },
+];
+
+// stocke la valeur du bouton select de manière réactive
+const selectedSortOption = ref<string>('random');
+
+// crée une propriété calculée sortedProducts qui retourne les produits triés en fonction de l'option de tri
+const sortedProducts = computed<Product[]>(() => {
+    console.log("Sorting products...");
+    const option = selectedSortOption.value;
+    // ordre aléatoire
+    if (option === 'random') {
+        return filteredProducts.value.slice().sort(() => Math.random() - 0.5);
+    // prix ascendant
+    } else if (option === 'priceAsc') {
+        return filteredProducts.value.slice().sort((a, b) => Number(a.price) - Number(b.price));
+    // prix descendant
+    } else if (option === 'priceDesc') {
+        return filteredProducts.value.slice().sort((a, b) => Number(b.price) - Number(a.price));
+    // A to Z
+    } else if (option === 'alphaAsc') {
+        return filteredProducts.value.slice().sort((a, b) => a.brand.localeCompare(b.brand));
+    // Z to A
+    } else if (option === 'alphaDesc') {
+        return filteredProducts.value.slice().sort((a, b) => b.brand.localeCompare(a.brand));
     } else {
-        return products;
+        return filteredProducts.value;
     }
+});
+
+// met à jour la liste triée des produits lorsque l'option de tri change
+watch(selectedSortOption, () => {
+    sortedProducts.value;
 });
 
 </script>
@@ -37,8 +94,11 @@ const filteredProducts = computed<Product[]>(() => {
 <template>
     <div class="page">
         <h1>{{ pageTitle }}</h1>
+        <select class="sortSelectButton" v-model="selectedSortOption">
+            <option v-for="selectOption in selectOptions" :key="selectOption.value" :value="selectOption.value">{{ selectOption.mention }}</option>
+        </select>
         <div class="productCards-container">
-            <ProductCard v-for="product in filteredProducts" :key="product.id" :product="product"/>
+            <ProductCard v-for="product in sortedProducts" :key="product.id" :product="product"/>
         </div>
     </div>
 </template>

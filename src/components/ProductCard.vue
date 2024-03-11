@@ -14,6 +14,7 @@ const props = defineProps<{
             <img :src="`/images` + props.product.image_source" alt="props.product.image_alt">
         </div>
         <p>{{ props.product.brand }} {{ props.product.model }}</p>
+        <p>{{ props.product.price }} $</p>
     </div>
 </template>
 

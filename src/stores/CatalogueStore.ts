@@ -41,6 +41,15 @@ export const useCatalogueStore = defineStore('catalogue', {
         addToWishList(product: Product): void {
             this.wishListItems.push(product);
             this.saveInLocalStorage();
+        },
+
+        // retire un article de la wishlist
+        removeFromWishList(product: Product): void {
+            const index = this.wishListItems.findIndex(item => item.id === product.id);
+            if (index !== -1) {
+                this.wishListItems.splice(index, 1)
+            };
+            this.saveInLocalStorage();
         }
     },
 });

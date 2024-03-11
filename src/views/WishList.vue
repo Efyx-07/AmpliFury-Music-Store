@@ -2,6 +2,7 @@
 
 import { useCatalogueStore } from '@/stores/CatalogueStore';
 import type { Product } from '@/types/CatalogueTypes';
+import WishListItemCard from '@/components/WishListItemCard.vue';
 import { computed } from 'vue';
 
 const catalogueStore = useCatalogueStore();
@@ -22,13 +23,19 @@ if (savedWishListItems.length > 0) {
 
 <template>
     <div class="page">
+        <h1>Wishlist</h1>
         <div class="wishListItems-container">
-            <div class="wishListItem" v-for="wishListItem in wishListItems" :key="wishListItem.id">
-                <div class="image-container">
-                    <img :src="`/images` + wishListItem.image_source" alt="wishListItem.image_alt">
-                </div>
-                <p>{{ wishListItem.brand }} {{ wishListItem.model }}</p>
-            </div>
+            <WishListItemCard v-for="wishListItem in wishListItems" :key="wishListItem.id" :wishListItem="wishListItem"/>
         </div>
     </div>
 </template>
+
+<style lang="scss" scoped>
+
+.page .wishListItems-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 3rem;
+}
+</style>

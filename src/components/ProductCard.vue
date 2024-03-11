@@ -18,12 +18,13 @@ const addToWishList = (): void => {
 
 const router = useRouter();
 
+// navigue vers la page du produit selectionné
 const navigateToProduct = () => {
     router.push({
         name: 'ProductDetail',
         params: { productId: props.product.id }
-    })
-}
+    });
+};
 
 </script>
 

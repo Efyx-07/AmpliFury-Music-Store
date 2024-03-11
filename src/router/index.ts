@@ -19,10 +19,9 @@ const router = createRouter({
     },
     {
       path: '/catalogue/:category',
-      name: 'CataloguePage',
+      name: 'CatalogueCategoryPage',
       component: CataloguePage
     },
-
   ]
 })
 

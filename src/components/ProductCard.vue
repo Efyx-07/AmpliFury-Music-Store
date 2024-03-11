@@ -1,19 +1,33 @@
 <script setup lang="ts">
 
-import { useCatalogueStore } from '@/stores/CatalogueStore';
 import type { Product } from '@/types/CatalogueTypes';
 
-const catalogueStore = useCatalogueStore();
-
-const products: Product[] = catalogueStore.getAllProducts();
+const props = defineProps<{
+    product: Product;
+}>();
 
 </script>
 
 <template>
-    <div class="product-card" v-for="product in products" :key="product.id">
+    <div class="product-card">
         <div class="image-container">
-            <img :src="`/images` + product.image_source" alt="product.image_alt">
+            <img :src="`/images` + props.product.image_source" alt="props.product.image_alt">
         </div>
-        <p>{{ product.brand }}</p>
+        <p>{{ props.product.brand }} {{ props.product.model }}</p>
     </div>
 </template>
+
+<style lang="scss" scoped>
+
+.product-card {
+    width: 20rem;
+
+    .image-container {
+        width: 100%;
+
+        img {
+            width: 100%;
+        }
+    }
+}
+</style>

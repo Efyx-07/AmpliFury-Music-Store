@@ -30,7 +30,7 @@ const navigateToProduct = () => {
 
 <template>
     <div class="product-card">
-        <div class="image-container">
+        <div class="image-container" @click="navigateToProduct">
             <img :src="`/images` + props.product.image_source" alt="props.product.image_alt">
         </div>
         <p>{{ props.product.brand }} {{ props.product.model }}</p>
@@ -53,4 +53,5 @@ const navigateToProduct = () => {
         }
     }
 }
+
 </style>

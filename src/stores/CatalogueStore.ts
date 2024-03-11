@@ -32,9 +32,15 @@ export const useCatalogueStore = defineStore('catalogue', {
             return products;
         },
 
+        // sauvegarde dans le Local Storage après chaque modification
+        saveInLocalStorage(): void {
+            localStorage.setItem('wishListItems', JSON.stringify(this.wishListItems));
+        },
+
         // ajoute un produit à la wishlist
         addToWishList(product: Product): void {
-            this.wishListItems.push(product)
+            this.wishListItems.push(product);
+            this.saveInLocalStorage();
         }
     },
 });

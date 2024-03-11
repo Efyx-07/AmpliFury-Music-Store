@@ -30,11 +30,6 @@ const router = createRouter({
       component: WishList
     },
     {
-      path: '/product', // création d'une route dynamique pour afficher un produit individuellement
-      name: 'Product',
-      component: ProductPage,
-    },
-    {
       path: '/product/:productId', // création d'une route dynamique pour afficher un produit individuellement
       name: 'ProductDetail',
       component: ProductPage,

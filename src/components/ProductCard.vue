@@ -1,10 +1,19 @@
 <script setup lang="ts">
 
 import type { Product } from '@/types/CatalogueTypes';
+import { Icon } from '@iconify/vue';
+import { useCatalogueStore } from '@/stores/CatalogueStore';
 
 const props = defineProps<{
     product: Product;
 }>();
+
+const catalogueStore = useCatalogueStore()
+
+// ajoute un article à la wishlist
+const addToWishList = (): void => {
+    catalogueStore.addToWishList(props.product);
+};
 
 </script>
 
@@ -15,6 +24,7 @@ const props = defineProps<{
         </div>
         <p>{{ props.product.brand }} {{ props.product.model }}</p>
         <p>{{ props.product.price }} $</p>
+        <Icon icon="clarity:heart-line" class="wishlistIcon" @click="addToWishList"/>
     </div>
 </template>
 

@@ -4,12 +4,14 @@ import type { Category, Product } from '@/types/CatalogueTypes';
 
 type State = {
     categories: Category[];
+    wishListItems: Product[]
 }
 
 export const useCatalogueStore = defineStore('catalogue', {
 
     state: (): State => ({
         categories: [],
+        wishListItems: [],
     }),
 
     actions: {
@@ -29,5 +31,10 @@ export const useCatalogueStore = defineStore('catalogue', {
             const products: Product[] = this.categories.flatMap(category => category.products);
             return products;
         },
+
+        // ajoute un produit à la wishlist
+        addToWishList(product: Product): void {
+            this.wishListItems.push(product)
+        }
     },
 });

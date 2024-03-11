@@ -62,7 +62,6 @@ const selectedSortOption = ref<string>('random');
 
 // crée une propriété calculée sortedProducts qui retourne les produits triés en fonction de l'option de tri
 const sortedProducts = computed<Product[]>(() => {
-    console.log("Sorting products...");
     const option = selectedSortOption.value;
     // ordre aléatoire
     if (option === 'random') {

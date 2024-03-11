@@ -2,6 +2,7 @@
 
 import StoreLogo from '@/sub-components/StoreLogo.vue';
 import SiteNav from '@/sub-components/SiteNav.vue';
+import WishListIcon from '@/sub-components/WishListIcon.vue';
 
 </script>
 
@@ -9,6 +10,7 @@ import SiteNav from '@/sub-components/SiteNav.vue';
     <header>
         <StoreLogo />
         <SiteNav />
+        <WishListIcon />
     </header>
 </template>
 

@@ -8,19 +8,23 @@ import { computed } from 'vue';
 
 const catalogueStore = useCatalogueStore();
 
+// importe la liste de tous les produits
 const products: Product[] = catalogueStore.getAllProducts();
 
 const route = useRoute();
 
-const categoryFilter = computed(() => route.params.category || 'all');
+// extrait la categorie de la route dynamique
+const categoryFilter = computed<string | string[]>(() => route.params.category || 'all');
 
+// change le titre de la page selon la categorie 
 const pageTitle = computed<string | string[]>(() => {
-    const category = categoryFilter.value;
+    const category: string | string[] = categoryFilter.value;
     return category === 'all' ? 'All Products' : category;
 }); 
 
+// filtre les produits selon la catégorie
 const filteredProducts = computed<Product[]>(() => {
-    const category = categoryFilter.value;
+    const category: string | string[] = categoryFilter.value;
     if (category && category !== 'all') {
         return products.filter(product => product.type === category);
     } else {

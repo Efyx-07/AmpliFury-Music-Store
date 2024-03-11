@@ -39,7 +39,11 @@ export const useCatalogueStore = defineStore('catalogue', {
 
         // ajoute un produit à la wishlist
         addToWishList(product: Product): void {
-            this.wishListItems.push(product);
+            // vérifie si l'article est déjà dans la wishlist
+            const isAlreadyInWishList: boolean = this.wishListItems.some(item => item.id === product.id);
+            if (!isAlreadyInWishList) {
+                this.wishListItems.push(product);
+            }
             this.saveInLocalStorage();
         },
 

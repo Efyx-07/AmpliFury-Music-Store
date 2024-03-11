@@ -1,7 +1,7 @@
 <template>
-    <div class="logo-container">
+    <router-link to="/" class="logo-container">
         <img src="/images/logo/AmpliFury.png" alt="AmpliFury-logo">
-    </div>
+    </router-link >
 </template>
 
 <style lang="scss" scoped>

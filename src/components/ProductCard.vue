@@ -3,6 +3,7 @@
 import type { Product } from '@/types/CatalogueTypes';
 import { Icon } from '@iconify/vue';
 import { useCatalogueStore } from '@/stores/CatalogueStore';
+import { useRouter } from 'vue-router';
 
 const props = defineProps<{
     product: Product;
@@ -15,6 +16,15 @@ const addToWishList = (): void => {
     catalogueStore.addToWishList(props.product);
 };
 
+const router = useRouter();
+
+const navigateToProduct = () => {
+    router.push({
+        name: 'ProductDetail',
+        params: { productId: props.product.id }
+    })
+}
+
 </script>
 
 <template>
@@ -24,7 +34,8 @@ const addToWishList = (): void => {
         </div>
         <p>{{ props.product.brand }} {{ props.product.model }}</p>
         <p>{{ props.product.price }} $</p>
-        <Icon icon="clarity:heart-line" class="wishlistIcon" @click="addToWishList"/>
+        <Icon icon="clarity:heart-line" @click="addToWishList" />
+        <Icon icon="ph:eye-light" @click="navigateToProduct"/>
     </div>
 </template>
 

@@ -14,7 +14,9 @@ const categories: Category[] = catalogueStore.categories;
         <h1>Our categories</h1>
         <div class="categoryCards-container">
             <div class="category-card" v-for="category in categories" :key="category.id">
-                <img :src="`/images` + category.categoryImage.source" alt="category.categoryImage.alt">
+                <router-link :to="`/catalogue/${category.name}`">
+                    <img :src="`/images` + category.categoryImage.source" alt="category.categoryImage.alt">
+                </router-link>
                 <p>{{ category.name }}</p>
             </div>
         </div>

@@ -3,6 +3,7 @@
 import StoreLogo from '@/sub-components/StoreLogo.vue';
 import SiteNav from '@/sub-components/SiteNav.vue';
 import WishListIcon from '@/sub-components/WishListIcon.vue';
+import CartIcon from '@/sub-components/CartIcon.vue';
 
 </script>
 
@@ -10,7 +11,10 @@ import WishListIcon from '@/sub-components/WishListIcon.vue';
     <header>
         <StoreLogo />
         <SiteNav />
-        <WishListIcon />
+        <div class="icons-container">
+            <WishListIcon />
+            <CartIcon />
+        </div>
     </header>
 </template>
 
@@ -30,6 +34,11 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-around;
+
+    .icons-container {
+        display: flex;
+        gap: 2rem;
+    }
 }
 
 </style>

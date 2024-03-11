@@ -12,7 +12,7 @@ const wishListItem: Product = props.wishListItem;
 
 const catalogueStore = useCatalogueStore();
 
-// supprime l'article de la wishlist
+// supprime l'article de la wishList
 const removeFromWishList = (item: Product) => {
     catalogueStore.removeFromWishList(item);
 };

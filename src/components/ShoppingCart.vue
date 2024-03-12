@@ -6,7 +6,7 @@ import CartItem from './CartItem.vue';
 import { useCatalogueStore } from '@/stores/CatalogueStore';
 import type { Product } from '@/types/CatalogueTypes';
 import ShoppingCartFooter from './ShoppingCartFooter.vue';
-import ReusableButton from '@/sub-components/ReusableButton.vue';
+import ReusablePrimaryButton from '@/sub-components/ReusablePrimaryButton.vue';
 
 const isShoppingCartVisible = ref<boolean>(false);
 
@@ -51,7 +51,7 @@ const clearCart = (): void => {
         </header>
         <div class="cartItems-container">
             <CartItem v-for="cartItem in cartItems" :key="cartItem.id" :cartItem="cartItem"/>
-            <ReusableButton class="button" v-if="cartItems.length > 1" @click="clearCart">Clear cart</ReusableButton>
+            <ReusablePrimaryButton class="button" v-if="cartItems.length > 1" @click="clearCart">Clear cart</ReusablePrimaryButton>
         </div>
         <ShoppingCartFooter />
     </div>

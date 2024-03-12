@@ -92,22 +92,67 @@ watch(selectedSortOption, () => {
 
 <template>
     <div class="page">
-        <h1>{{ pageTitle }}</h1>
-        <select class="sortSelectButton" v-model="selectedSortOption">
-            <option v-for="selectOption in selectOptions" :key="selectOption.value" :value="selectOption.value">{{ selectOption.mention }}</option>
-        </select>
-        <div class="productCards-container">
-            <ProductCard v-for="product in sortedProducts" :key="product.id" :product="product"/>
+        <div class="page-heading">
+            <div class="head-content">
+                <h1>{{ pageTitle }}</h1>
+                <select class="sortSelectButton" v-model="selectedSortOption">
+                    <option v-for="selectOption in selectOptions" :key="selectOption.value" :value="selectOption.value">{{ selectOption.mention }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="content">
+            <div class="productCards-container">
+                <ProductCard v-for="product in sortedProducts" :key="product.id" :product="product"/>
+            </div>
         </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
 
-.page .productCards-container {
+@import '@/assets/colors.scss';
+
+.page {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 3rem;
+    flex-direction: column;
+    align-items: center;
+
+    .page-heading {
+        height: 5rem;
+        border-bottom: solid 1px $blackColor;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        .head-content {
+            width: 100%;
+            max-width: 90rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            h1 {
+                font-size: 6rem;
+            }
+
+            select {
+                height: 2.5rem;
+                width: 14rem;
+                font-size: 1rem;
+            }
+        }
+    }
+
+    .content {
+        padding: 3rem 0;
+        width: 100%;
+        max-width: 90rem;
+
+        .productCards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+    }
 }
 </style>

@@ -9,11 +9,13 @@ import CartIcon from '@/sub-components/CartIcon.vue';
 
 <template>
     <header>
-        <StoreLogo />
-        <SiteNav />
-        <div class="icons-container">
-            <WishListIcon />
-            <CartIcon />
+        <div class="content">
+            <StoreLogo />
+            <SiteNav />
+            <div class="icons-container">
+                <WishListIcon />
+                <CartIcon />
+            </div>
         </div>
     </header>
 </template>
@@ -35,10 +37,19 @@ header {
     align-items: center;
     justify-content: space-around;
 
-    .icons-container {
+    .content {
+        width: 100%;
+        max-width: 90rem;
         display: flex;
-        gap: 2rem;
+        justify-content: space-between;
+        align-items: center;
+
+        .icons-container {
+            display: flex;
+            gap: 2rem;
+        }
     }
+
 }
 
 </style>

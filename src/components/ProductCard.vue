@@ -40,24 +40,67 @@ const addToShoppingCart = (): void => {
         <div class="image-container" @click="navigateToProduct">
             <img :src="`/images` + props.product.image_source" alt="props.product.image_alt">
         </div>
-        <p>{{ props.product.brand }} {{ props.product.model }}</p>
-        <p>{{ props.product.price }} {{ currency }}</p>
-        <Icon icon="clarity:heart-line" @click="addToWishList" />
-        <Icon icon="ph:eye-light" @click="navigateToProduct"/>
-        <Icon icon="bi:cart" @click="addToShoppingCart"/>
+        <div class="datas-container">
+            <div class="infos-container">
+                <p class="item-name">{{ props.product.brand }} {{ props.product.model }}</p>
+                <p class="item-price">{{ props.product.price }} {{ currency }}</p>
+            </div>
+            <div class="icons-container">
+                <Icon icon="ph:eye-light" class="icon" @click="navigateToProduct"/>
+                <Icon icon="clarity:heart-line" class="icon" @click="addToWishList" />
+                <Icon icon="bi:cart" class="icon" @click="addToShoppingCart"/>
+            </div>
+        </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
 
+@import '@/assets/colors.scss';
+
 .product-card {
     width: 20rem;
+    border: solid 1px $blackColor;
+    padding: 1rem;
 
     .image-container {
         width: 100%;
+        display: inline-block;
+        position: relative;
 
         img {
             width: 100%;
+            display: block;
+            position: relative;
+            object-fit: cover;
+        }
+    }
+
+    .datas-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        .infos-container {
+
+            .item-name {
+                font-size: 1.25rem;
+            }
+
+            .item-price {
+                font-size: 1.5rem;
+                font-weight: 600;
+            }
+        }
+
+        .icons-container {
+            display: flex;
+            justify-content: flex-end;
+            gap: .5rem;
+
+            .icon {
+                font-size: 1.25rem;
+            }
         }
     }
 }

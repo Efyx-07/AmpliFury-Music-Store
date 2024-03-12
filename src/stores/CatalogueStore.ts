@@ -4,7 +4,8 @@ import type { Category, Product } from '@/types/CatalogueTypes';
 
 type State = {
     categories: Category[];
-    wishListItems: Product[]
+    wishListItems: Product[];
+    cartItems: Product[];
 }
 
 export const useCatalogueStore = defineStore('catalogue', {
@@ -12,6 +13,7 @@ export const useCatalogueStore = defineStore('catalogue', {
     state: (): State => ({
         categories: [],
         wishListItems: [],
+        cartItems: [],
     }),
 
     actions: {
@@ -35,6 +37,7 @@ export const useCatalogueStore = defineStore('catalogue', {
         // sauvegarde dans le Local Storage après chaque modification
         saveInLocalStorage(): void {
             localStorage.setItem('wishListItems', JSON.stringify(this.wishListItems));
+            localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
         },
 
         // ajoute un produit à la wishlist
@@ -53,6 +56,12 @@ export const useCatalogueStore = defineStore('catalogue', {
             if (index !== -1) {
                 this.wishListItems.splice(index, 1)
             };
+            this.saveInLocalStorage();
+        },
+
+        // ajoute un article au shoppingCart
+        addToShoppingCart(product: Product): void {
+            this.cartItems.push(product);
             this.saveInLocalStorage();
         }
     },

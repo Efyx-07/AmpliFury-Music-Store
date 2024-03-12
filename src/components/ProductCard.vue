@@ -16,14 +16,18 @@ const addToWishList = (): void => {
     catalogueStore.addToWishList(props.product);
 };
 
-const router = useRouter();
-
 // navigue vers la page du produit selectionné
+const router = useRouter();
 const navigateToProduct = () => {
     router.push({
         name: 'ProductDetail',
         params: { productId: props.product.id }
     });
+};
+
+// ajoute un article au shoppingCart
+const addToShoppingCart = (): void => {
+    catalogueStore.addToShoppingCart(props.product);
 };
 
 </script>
@@ -37,6 +41,7 @@ const navigateToProduct = () => {
         <p>{{ props.product.price }} $</p>
         <Icon icon="clarity:heart-line" @click="addToWishList" />
         <Icon icon="ph:eye-light" @click="navigateToProduct"/>
+        <Icon icon="bi:cart" @click="addToShoppingCart"/>
     </div>
 </template>
 

@@ -1,7 +1,10 @@
 <script setup lang="ts">
 
 import { Icon } from '@iconify/vue';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
+import CartItem from './CartItem.vue';
+import { useCatalogueStore } from '@/stores/CatalogueStore';
+import type { Product } from '@/types/CatalogueTypes';
 
 const isShoppingCartVisible = ref<boolean>(false);
 
@@ -17,11 +20,28 @@ onMounted(() => {
     });
 });
 
+const catalogueStore = useCatalogueStore();
+
+// ajoute les articles au shoppingCart
+const cartItems = computed<Product[]>(() => {
+    return catalogueStore.cartItems;
+});
+
+// récupère les données stockées dans le localStorage
+const savedCartItemsJSON = localStorage.getItem('cartItems');
+const savedCartItems: Product[] = savedCartItemsJSON ? JSON.parse(savedCartItemsJSON) : [];
+if (savedCartItems.length > 0) {
+    catalogueStore.cartItems = savedCartItems;
+};
+
 </script>
 
 <template>
     <div class="shopping-cart" :class="{ hiddenShoppingCart: !isShoppingCartVisible}">
         <Icon icon="carbon:close" class="icon" @click="closeShoppingCart" />
+        <div class="cartItems-container">
+            <CartItem v-for="cartItem in cartItems" :key="cartItem.id" :cartItem="cartItem"/>
+        </div>
     </div>
 </template>
 

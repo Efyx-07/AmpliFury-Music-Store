@@ -6,7 +6,7 @@ import { useCatalogueStore } from '@/stores/CatalogueStore';
 
 const props = defineProps<{
     wishListItem: Product;
-}>()
+}>();
 
 const wishListItem: Product = props.wishListItem;
 
@@ -43,4 +43,5 @@ const removeFromWishList = (item: Product) => {
         }
     }
 }
+
 </style>

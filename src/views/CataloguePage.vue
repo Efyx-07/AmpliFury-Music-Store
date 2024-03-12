@@ -101,9 +101,9 @@ watch(selectedSortOption, () => {
             </div>
         </div>
         <div class="content">
-            <div class="productCards-container">
+            <transition-group name="list" tag="div">
                 <ProductCard v-for="product in sortedProducts" :key="product.id" :product="product"/>
-            </div>
+            </transition-group>
         </div>
     </div>
 </template>
@@ -148,11 +148,15 @@ watch(selectedSortOption, () => {
         width: 100%;
         max-width: 90rem;
 
-        .productCards-container {
+        div {
             display: flex;
             flex-wrap: wrap;
             gap: 3rem;
         }
+    }
+
+    .list-move {
+        transition: all .5s ease-in-out;
     }
 }
 </style>

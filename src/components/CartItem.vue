@@ -63,6 +63,7 @@ const decreaseQuantity = (item: any) => {
     border: solid 1px $blackColor;
     padding: .5rem;
     display: flex;
+    gap: 1rem;
 
     .image-container {
         width: 10rem;
@@ -83,7 +84,25 @@ const decreaseQuantity = (item: any) => {
             display: flex;
             align-items: center;
             gap: 1rem;
-            font-size: 2rem;
+            font-size: 1.5rem;
+
+            .decrementor, .incrementor {
+                background: $whiteColor;
+                color: $blackColor;
+                border: solid 1px $blackColor;
+                width: 1.5rem;
+                height: 1.5rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+
+                &:hover {
+                    background: $blackColor;
+                    color: $whiteColor;
+                    border-color: transparent;
+                }
+            }
         }
     }
 }

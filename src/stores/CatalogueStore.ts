@@ -72,6 +72,14 @@ export const useCatalogueStore = defineStore('catalogue', {
                 this.cartItems.splice(index, 1);
             };
             this.saveInLocalStorage();
+        },
+    },
+
+    getters: {
+
+        // convertit le prix des articles en Number et calcul la somme total du prix des articles dans le panier
+        totalPrice(): string {
+            return this.cartItems.reduce((total, item) => total + parseFloat(item.price), 0).toFixed(2); 
         }
     },
 });

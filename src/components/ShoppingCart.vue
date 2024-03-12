@@ -5,6 +5,7 @@ import { ref, onMounted, computed } from 'vue';
 import CartItem from './CartItem.vue';
 import { useCatalogueStore } from '@/stores/CatalogueStore';
 import type { Product } from '@/types/CatalogueTypes';
+import ShoppingCartFooter from './ShoppingCartFooter.vue';
 
 const isShoppingCartVisible = ref<boolean>(false);
 
@@ -38,10 +39,14 @@ if (savedCartItems.length > 0) {
 
 <template>
     <div class="shopping-cart" :class="{ hiddenShoppingCart: !isShoppingCartVisible}">
-        <Icon icon="carbon:close" class="icon" @click="closeShoppingCart" />
+        <header>
+            <h1>Shopping Cart [{{ cartItems.length }}]</h1>
+            <Icon icon="carbon:close" class="closeIcon" @click="closeShoppingCart" />
+        </header>
         <div class="cartItems-container">
             <CartItem v-for="cartItem in cartItems" :key="cartItem.id" :cartItem="cartItem"/>
         </div>
+        <ShoppingCartFooter />
     </div>
 </template>
 
@@ -65,11 +70,35 @@ if (savedCartItems.length > 0) {
     z-index: 199;
     transition: transform .3s ease-in-out;
 
-    .icon {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        font-size: 2rem;
+    header {
+        width: 100%;
+        height: 5rem;
+        background: $whiteColor;
+        border-bottom: solid 1px $blackColor;
+        display: flex; 
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1rem 0 2rem;
+
+        .closeIcon {
+            font-size: 1.5rem;
+        }
+    }
+
+    .cartItems-container {
+        width: 100%;
+        height: calc(100vh - 19rem); // height - taille du footer + header
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
     }
 }
 

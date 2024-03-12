@@ -1,6 +1,7 @@
 <script setup lang="ts">
 
 import type { Product } from '@/types/CatalogueTypes';
+import { Icon } from '@iconify/vue';
 import { useCatalogueStore } from '@/stores/CatalogueStore';
 
 const props = defineProps<{
@@ -30,21 +31,25 @@ const removeFromShoppingCart = (item: Product) => {
 
 <style lang="scss" scoped>
 
+@import '@/assets/colors.scss';
+
 .cartItem {
     width: 100%;
+    border: solid 1px $blackColor;
+    padding: .5rem;
     display: flex;
 
     .image-container {
         width: 10rem;
+        display: inline-block;
+        position: relative;
 
         img {
             width: 100%;
+            display: block;
+            position: relative;
+            object-fit: cover;
         }
-    }
-
-    .icon {
-        color: black;
-        font-size: 1rem;
     }
 }
 

@@ -3,13 +3,16 @@
 import type { Product } from '@/types/CatalogueTypes';
 import { Icon } from '@iconify/vue';
 import { useCatalogueStore } from '@/stores/CatalogueStore';
+import { useGlobalDataStore } from '@/stores/GlobalDataStore';
 import { useRouter } from 'vue-router';
 
 const props = defineProps<{
     product: Product;
 }>();
 
-const catalogueStore = useCatalogueStore()
+const catalogueStore = useCatalogueStore();
+
+const { currency } = useGlobalDataStore();
 
 // ajoute un article à la wishlist
 const addToWishList = (): void => {
@@ -38,7 +41,7 @@ const addToShoppingCart = (): void => {
             <img :src="`/images` + props.product.image_source" alt="props.product.image_alt">
         </div>
         <p>{{ props.product.brand }} {{ props.product.model }}</p>
-        <p>{{ props.product.price }} $</p>
+        <p>{{ props.product.price }} {{ currency }}</p>
         <Icon icon="clarity:heart-line" @click="addToWishList" />
         <Icon icon="ph:eye-light" @click="navigateToProduct"/>
         <Icon icon="bi:cart" @click="addToShoppingCart"/>

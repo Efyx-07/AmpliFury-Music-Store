@@ -31,8 +31,9 @@ const removeFromShoppingCart = (item: Product) => {
         <div class="datas-container">
             <p class="item-name">{{ cartItem.brand }} {{ cartItem.model }}</p>
             <p class="item-price">{{ cartItem.price }} {{ currency }}</p>
-            <QuantityCounter :cartItem="cartItem"/>
+            <QuantityCounter :cartItem="cartItem" class="counter"/>
             <div class="icons-container">
+                <Icon icon="clarity:heart-line" class="icon" />
                 <Icon icon="ph:trash-light" class="icon" @click="removeFromShoppingCart(cartItem)"/>
             </div>
         </div>
@@ -60,6 +61,39 @@ const removeFromShoppingCart = (item: Product) => {
             display: block;
             position: relative;
             object-fit: cover;
+        }
+    }
+
+    .datas-container {
+        width: 100%;
+        position: relative;
+
+        .item-name {
+            font-size: 1.25rem;
+        }
+
+        .item-price {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .counter {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        .icons-container {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            display: flex;
+            gap: .5rem;
+
+            .icon {
+                font-size: 1.1rem;
+                cursor: pointer;
+            }
         }
     }
 }

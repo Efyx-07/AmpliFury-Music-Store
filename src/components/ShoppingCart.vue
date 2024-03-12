@@ -93,6 +93,7 @@ const clearCart = (): void => {
 
         .closeIcon {
             font-size: 1.5rem;
+            cursor: pointer;
         }
     }
 

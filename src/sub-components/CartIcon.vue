@@ -21,8 +21,8 @@ const cartItemsCount = computed<number>(() => {
 </script>
 
 <template>
-    <div class="iconAndBadge-container">
-        <Icon icon="bi:cart" @click="toggleShoppingCart" class="icon"/>
+    <div class="iconAndBadge-container" @click="toggleShoppingCart">
+        <Icon icon="bi:cart" class="icon"/>
         <div class="badge" v-if="cartItemsCount > 0">
             <p>{{ cartItemsCount }}</p>
         </div>

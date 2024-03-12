@@ -73,6 +73,12 @@ export const useCatalogueStore = defineStore('catalogue', {
             };
             this.saveInLocalStorage();
         },
+
+        // supprime tous les articles du shoppingCart
+        clearCart(): void {
+            this.cartItems = [];
+            this.saveInLocalStorage();
+        },
     },
 
     getters: {

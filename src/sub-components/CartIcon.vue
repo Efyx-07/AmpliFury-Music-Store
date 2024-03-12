@@ -7,6 +7,8 @@ const toggleShoppingCart = (): void => {
     const showShoppingCart: Event = new Event('show-shoppingCart');
     // déclenche l'évènement sur l'objet window
     window.dispatchEvent(showShoppingCart);
+    const showModalOverlay: Event = new Event('show-modalOverlay');
+    window.dispatchEvent(showModalOverlay);
 };
 
 </script>

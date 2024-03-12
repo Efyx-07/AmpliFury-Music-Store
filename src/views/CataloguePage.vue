@@ -154,6 +154,7 @@ watch(selectedSortOption, () => {
 
         .productCards-container {
             display: flex;
+            justify-content: center;
             flex-wrap: wrap;
             gap: 3rem;
         }

@@ -7,6 +7,7 @@ import { useCatalogueStore } from '@/stores/CatalogueStore';
 import type { Product } from '@/types/CatalogueTypes';
 import ShoppingCartFooter from './ShoppingCartFooter.vue';
 import ReusablePrimaryButton from '@/sub-components/ReusablePrimaryButton.vue';
+import ModalOverlay from '@/sub-components/ModalOverlay.vue';
 
 const isShoppingCartVisible = ref<boolean>(false);
 
@@ -59,6 +60,7 @@ const clearCart = (): void => {
         </div>
         <ShoppingCartFooter />
     </div>
+    <ModalOverlay :showModalOverlay="isShoppingCartVisible" v-show="isShoppingCartVisible"/>
 </template>
 
 <style lang="scss" scoped>

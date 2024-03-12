@@ -61,7 +61,15 @@ export const useCatalogueStore = defineStore('catalogue', {
 
         // ajoute un article au shoppingCart
         addToShoppingCart(product: Product): void {
-            this.cartItems.push(product);
+            // empeche l'affichage de l'article plus d'une fois dans le shoppingCart en comparant les id 
+            const existingItem = this.cartItems.find(item => item.id === product.id);
+            if(existingItem) {
+                existingItem.quantity++; // si article déjà présent dans shoppingCart, alors augmente la quantité
+                this.updateItemPrice(product); // met à jour le prix
+            } else {
+                const itemToAdd = { ...product, quantity: 1, initialPrice: product.price }; // initialPrice est défini ici pour maj du prix dans le shoppingCart selon la quantité
+                this.cartItems.push(itemToAdd);
+            }
             this.saveInLocalStorage();
         },
 
@@ -79,6 +87,16 @@ export const useCatalogueStore = defineStore('catalogue', {
             this.cartItems = [];
             this.saveInLocalStorage();
         },
+
+        // met à jour le prix des articles dans le panier selon la quantité du compteur
+        updateItemPrice(item: any) {
+            if (item.quantity > 0) {
+                item.price = (parseFloat(item.initialPrice) * item.quantity).toFixed(2);
+            } else {
+                item.price = item.initialPrice;
+            }
+            this.saveInLocalStorage();
+        }
     },
 
     getters: {

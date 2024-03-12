@@ -50,11 +50,11 @@ export const useCatalogueStore = defineStore('catalogue', {
             this.saveInLocalStorage();
         },
 
-        // retire un article de la wishlist
+        // supprime un article de la wishlist
         removeFromWishList(product: Product): void {
             const index = this.wishListItems.findIndex(item => item.id === product.id);
             if (index !== -1) {
-                this.wishListItems.splice(index, 1)
+                this.wishListItems.splice(index, 1);
             };
             this.saveInLocalStorage();
         },
@@ -62,6 +62,15 @@ export const useCatalogueStore = defineStore('catalogue', {
         // ajoute un article au shoppingCart
         addToShoppingCart(product: Product): void {
             this.cartItems.push(product);
+            this.saveInLocalStorage();
+        },
+
+        // supprime un article du shoppingCart
+        removeFromShoppingCart(product: Product): void {
+            const index = this.cartItems.findIndex(item => item.id === product.id);
+            if (index !== -1) {
+                this.cartItems.splice(index, 1);
+            };
             this.saveInLocalStorage();
         }
     },

@@ -17,7 +17,6 @@ const removeFromWishList = (item: Product) => {
     catalogueStore.removeFromWishList(item);
 };
 
-
 </script>
 
 <template>
@@ -26,7 +25,7 @@ const removeFromWishList = (item: Product) => {
             <img :src="`/images` + wishListItem.image_source" alt="wishListItem.image_alt">
         </div>
         <p>{{ wishListItem.brand }} {{ wishListItem.model }}</p>
-        <Icon icon="ph:trash-light" class="icon" @click="removeFromWishList(props.wishListItem)"/>
+        <Icon icon="ph:trash-light" class="icon" @click="removeFromWishList(wishListItem)"/>
     </div>
 </template>
 

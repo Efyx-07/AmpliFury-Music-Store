@@ -1,13 +1,20 @@
 <script setup lang="ts">
 
 import type { Product } from '@/types/CatalogueTypes';
-// import { useCatalogueStore } from '@/stores/CatalogueStore';
+import { useCatalogueStore } from '@/stores/CatalogueStore';
 
 const props = defineProps<{
     cartItem: Product;
 }>();
 
 const cartItem: Product = props.cartItem;
+
+const catalogueStore = useCatalogueStore();
+
+// supprime l'article du shoppingCart
+const removeFromShoppingCart = (item: Product) => {
+    catalogueStore.removeFromShoppingCart(item);
+};
 
 </script>
 
@@ -17,6 +24,7 @@ const cartItem: Product = props.cartItem;
             <img :src="`/images` + cartItem.image_source" alt="cartItem.image_alt">
         </div>
         <p>{{ cartItem.brand }} {{ cartItem.model }}</p>
+        <Icon icon="ph:trash-light" class="icon" @click="removeFromShoppingCart(cartItem)"/>
     </div>
 </template>
 
@@ -32,6 +40,11 @@ const cartItem: Product = props.cartItem;
         img {
             width: 100%;
         }
+    }
+
+    .icon {
+        color: black;
+        font-size: 1rem;
     }
 }
 

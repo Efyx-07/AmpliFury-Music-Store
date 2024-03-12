@@ -13,6 +13,13 @@ const totalPrice = computed<string>(() => {
     return useCatalogueStore().totalPrice;
 });
 
+const closeShoppingCart = (): void => {
+    // crée un évènement personnalisé
+    const hideShoppingCart: Event = new Event('hide-shoppingCart');
+    // déclenche l'évènement sur l'objet window
+    window.dispatchEvent(hideShoppingCart);
+};
+
 </script>
 
 <template>
@@ -23,7 +30,7 @@ const totalPrice = computed<string>(() => {
         </div>
         <div class="buttons-container">
             <ReusablePrimaryButton>Go to checkout</ReusablePrimaryButton>
-            <ReusableSecondaryButton>Keep browsing</ReusableSecondaryButton>
+            <ReusableSecondaryButton @click="closeShoppingCart">Keep browsing</ReusableSecondaryButton>
         </div>
     </div>
 </template>

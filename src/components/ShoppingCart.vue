@@ -15,10 +15,14 @@ const closeShoppingCart = (): void => {
     isShoppingCartVisible.value = false;
 }
 
-// écoute l'évènement personnalisé emis par carticon
 onMounted(() => {
+    // écoute l'évènement personnalisé emis par carticon
     window.addEventListener('show-shoppingCart', () => {
         isShoppingCartVisible.value = true;
+    });
+    // écoute l'évènement personnalisé emis par shoppingCartFooter
+    window.addEventListener('hide-shoppingCart', () => {
+        isShoppingCartVisible.value = false;
     });
 });
 

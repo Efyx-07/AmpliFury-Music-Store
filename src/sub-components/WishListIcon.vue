@@ -6,6 +6,6 @@ import { Icon } from '@iconify/vue';
 
 <template>
     <router-link to="/wishlist">
-        <Icon icon="clarity:heart-line" class="wishlistIcon"/>
+        <Icon icon="clarity:heart-line" />
     </router-link>
 </template>

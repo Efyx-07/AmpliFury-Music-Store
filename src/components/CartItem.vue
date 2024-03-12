@@ -3,6 +3,7 @@
 import type { Product } from '@/types/CatalogueTypes';
 import { Icon } from '@iconify/vue';
 import { useCatalogueStore } from '@/stores/CatalogueStore';
+import { useGlobalDataStore } from '@/stores/GlobalDataStore';
 
 const props = defineProps<{
     cartItem: Product;
@@ -12,9 +13,23 @@ const cartItem: Product = props.cartItem;
 
 const catalogueStore = useCatalogueStore();
 
+const {currency} = useGlobalDataStore();
+
 // supprime l'article du shoppingCart
 const removeFromShoppingCart = (item: Product) => {
     catalogueStore.removeFromShoppingCart(item);
+};
+
+// incrémente ou décremente la quantité dans le compteur et met à jour le prix
+const increaseQuantity = (item: any) => {
+    item.quantity++;
+    catalogueStore.updateItemPrice(item);
+};
+const decreaseQuantity = (item: any) => {
+    if (item.quantity > 1) {
+        item.quantity--;
+        catalogueStore.updateItemPrice(item);
+    }
 };
 
 </script>
@@ -24,8 +39,18 @@ const removeFromShoppingCart = (item: Product) => {
         <div class="image-container">
             <img :src="`/images` + cartItem.image_source" alt="cartItem.image_alt">
         </div>
-        <p>{{ cartItem.brand }} {{ cartItem.model }}</p>
-        <Icon icon="ph:trash-light" class="icon" @click="removeFromShoppingCart(cartItem)"/>
+        <div class="datas-container">
+            <p class="item-name">{{ cartItem.brand }} {{ cartItem.model }}</p>
+            <p class="item-price">{{ cartItem.price }} {{ currency }}</p>
+            <div class="quantity-counter">
+                <div class="decrementor" @click="decreaseQuantity(cartItem)"><p>-</p></div>
+                <div class="quantity"><p>{{ cartItem.quantity }}</p></div>
+                <div class="incrementor" @click="increaseQuantity(cartItem)"><p>+</p></div>
+            </div>
+            <div class="icons-container">
+                <Icon icon="ph:trash-light" class="icon" @click="removeFromShoppingCart(cartItem)"/>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -49,6 +74,16 @@ const removeFromShoppingCart = (item: Product) => {
             display: block;
             position: relative;
             object-fit: cover;
+        }
+    }
+
+    .datas-container {
+
+        .quantity-counter {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 2rem;
         }
     }
 }

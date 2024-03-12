@@ -67,12 +67,19 @@ const addToShoppingCart = (): void => {
         width: 100%;
         display: inline-block;
         position: relative;
+        overflow: hidden;
+        cursor: pointer;
+
+        &:hover > img {
+            transform: scale(1.05);
+        }
 
         img {
             width: 100%;
             display: block;
             position: relative;
             object-fit: cover;
+            transition: transform .5s ease-in-out;
         }
     }
 

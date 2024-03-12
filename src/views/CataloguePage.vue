@@ -101,9 +101,9 @@ watch(selectedSortOption, () => {
             </div>
         </div>
         <div class="content">
-            <transition-group name="list" tag="div">
+            <transition-group name="list" tag="div" class="productCards-container">  
                 <ProductCard v-for="product in sortedProducts" :key="product.id" :product="product"/>
-            </transition-group>
+            </transition-group> 
         </div>
     </div>
 </template>
@@ -136,9 +136,13 @@ watch(selectedSortOption, () => {
             }
 
             select {
+                background: none;
+                border: solid 1px $blackColor;
+                outline: none;
                 height: 2.5rem;
                 width: 14rem;
                 font-size: 1rem;
+                padding: 0 1rem;
             }
         }
     }
@@ -148,7 +152,7 @@ watch(selectedSortOption, () => {
         width: 100%;
         max-width: 90rem;
 
-        div {
+        .productCards-container {
             display: flex;
             flex-wrap: wrap;
             gap: 3rem;

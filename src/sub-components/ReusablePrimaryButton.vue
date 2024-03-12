@@ -16,9 +16,8 @@ button {
     border: solid 1px transparent;
 
     &:hover {
-        background: $whiteColor;
-        color: $blackColor;
-        border-color: $blackColor;
+        background: $accent1;
+        border-color: $accent1;
     }
 }
 

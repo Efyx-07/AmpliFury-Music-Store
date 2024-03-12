@@ -69,6 +69,7 @@ const addToShoppingCart = (): void => {
         position: relative;
         overflow: hidden;
         cursor: pointer;
+        background: green;
 
         &:hover > img {
             transform: scale(1.05);
@@ -84,6 +85,7 @@ const addToShoppingCart = (): void => {
     }
 
     .datas-container {
+        width: 100%;
         display: flex;
         flex-direction: column;
         gap: 1rem;

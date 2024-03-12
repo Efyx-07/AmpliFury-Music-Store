@@ -53,7 +53,7 @@ const categories: Category[] = useCatalogueStore().categories;
             .underline {
                 position: absolute;
                 bottom: 0;
-                background: $blackColor;
+                background: $accent1;
                 width: 0%;
                 height: .25rem;
                 transition: width .2s ease-in-out;

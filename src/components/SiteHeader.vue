@@ -26,7 +26,7 @@ import CartIcon from '@/sub-components/CartIcon.vue';
 
 header {
     width: 100%;
-    height: 5rem;
+    height: 6rem;
     background: $whiteColor;
     border-bottom: solid 1px $blackColor; 
     position: sticky;
@@ -39,7 +39,8 @@ header {
 
     .content {
         width: 100%;
-        max-width: 90rem;
+        max-width: 75rem;
+        padding: 0 1rem;
         display: flex;
         justify-content: space-between;
         align-items: center;

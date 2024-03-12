@@ -111,6 +111,7 @@ watch(selectedSortOption, () => {
 <style lang="scss" scoped>
 
 @import '@/assets/colors.scss';
+@import '@/assets/breakpoints.scss';
 
 .page {
     display: flex;
@@ -118,7 +119,6 @@ watch(selectedSortOption, () => {
     align-items: center;
 
     .page-heading {
-        height: 5rem;
         border-bottom: solid 1px $blackColor;
         width: 100%;
         display: flex;
@@ -126,13 +126,16 @@ watch(selectedSortOption, () => {
 
         .head-content {
             width: 100%;
-            max-width: 90rem;
+            max-width: 75rem;
+            max-height: 5rem;
+            padding: 0 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
 
             h1 {
-                font-size: 5rem;
+                font-size: clamp(3rem, 7vw,5rem);
+                white-space: nowrap;
             }
 
             select {
@@ -148,15 +151,14 @@ watch(selectedSortOption, () => {
     }
 
     .content {
-        padding: 3rem 0;
+        padding: 3rem 1rem;
         width: 100%;
-        max-width: 90rem;
+        max-width: 75rem;
 
         .productCards-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 3rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
         }
     }
 
@@ -164,4 +166,26 @@ watch(selectedSortOption, () => {
         transition: all .5s ease-in-out;
     }
 }
+
+@media (min-width: $breakpointLargeMobile) {
+
+    .page .content .productCards-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: $breakpointSmallTablet) {
+
+    .page .content .productCards-container {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media (min-width: $breakpointTablet) {
+
+    .page .content .productCards-container {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
 </style>

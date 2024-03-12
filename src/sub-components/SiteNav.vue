@@ -31,7 +31,7 @@ const categories: Category[] = useCatalogueStore().categories;
 .navItems-container {
     height: 2rem;
     display: flex;
-    gap: 3rem;
+    gap: 2rem;
 
     .navItem-container {
         height: 100%;

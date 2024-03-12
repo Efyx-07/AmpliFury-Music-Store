@@ -59,9 +59,8 @@ const addToShoppingCart = (): void => {
 @import '@/assets/colors.scss';
 
 .product-card {
-    width: 20rem;
     border: solid 1px $blackColor;
-    padding: 1rem;
+    padding: .75rem;
 
     .image-container {
         width: 100%;

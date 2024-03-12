@@ -29,8 +29,8 @@ const closeShoppingCart = (): void => {
             <h1>{{ totalPrice }} {{ currency }}</h1>
         </div>
         <div class="buttons-container">
-            <ReusablePrimaryButton>Go to checkout</ReusablePrimaryButton>
             <ReusableSecondaryButton @click="closeShoppingCart">Keep browsing</ReusableSecondaryButton>
+            <ReusablePrimaryButton>Go to checkout</ReusablePrimaryButton>
         </div>
     </div>
 </template>
@@ -44,14 +44,13 @@ const closeShoppingCart = (): void => {
     border-top: solid 1px $blackColor;
     width: 100%;
     max-width: 32rem;
-    height: 14rem;
+    height: 11rem;
     padding: 2rem;
     position: fixed;
     bottom: 0;
     z-index: 99;
     display: flex;
     justify-content: space-between;
-    align-items: center;
 
     .price-container {
         display: flex;

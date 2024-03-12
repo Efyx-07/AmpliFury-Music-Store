@@ -76,7 +76,7 @@ const clearCart = (): void => {
     border-left: solid 1px $blackColor; 
     height: 100vh;
     width: 100%;
-    max-width: 32rem;
+    max-width: 31rem;
     position: fixed;
     top: 0;
     right: 0;
@@ -85,24 +85,24 @@ const clearCart = (): void => {
 
     header {
         width: 100%;
-        height: 5rem;
+        height: 6rem;
         background: $whiteColor;
         border-bottom: solid 1px $blackColor;
         display: flex; 
         align-items: center;
         justify-content: space-between;
-        padding: 0 1rem 0 2rem;
+        padding: 0 2rem;
 
         .closeIcon {
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             cursor: pointer;
         }
     }
 
     .cartItems-container {
         width: 100%;
-        height: calc(100vh - 19rem); // height - taille du footer + header
-        padding: 1rem;
+        height: calc(100vh - 17rem); // height - taille du footer + header
+        padding: 2rem;
         display: flex;
         flex-direction: column;
         gap: 1rem;
@@ -116,6 +116,7 @@ const clearCart = (): void => {
 
         .button {
             align-self: flex-end;
+            margin-top: 1rem;
         }
     }
 }

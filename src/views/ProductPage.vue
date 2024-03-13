@@ -26,7 +26,7 @@ const selectedProduct: Product | undefined = products.find((product: Product) =>
                 <h1 v-if="selectedProduct">{{ selectedProduct.brand }} {{ selectedProduct.model }}</h1>
             </div>
         </div>
-        <div class="content">
+        <div class="content" v-if="selectedProduct">
             <DetailedProduct :selectedProduct="selectedProduct" />
         </div>
     </div>

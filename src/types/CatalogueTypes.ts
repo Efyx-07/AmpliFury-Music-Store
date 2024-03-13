@@ -23,6 +23,7 @@ export interface Product {
     reference_month: string;
     reference_year: string | number;
     color: string;
+    cartQuantity: number;
 }
 
 export interface CatalogueApiResponse {

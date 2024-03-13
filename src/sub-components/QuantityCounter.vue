@@ -11,12 +11,12 @@ const cartItem: Product = props.cartItem;
 
 // incrémente ou décremente la quantité dans le compteur et met à jour le prix
 const increaseQuantity = (item: any) => {
-    item.quantity++;
+    item.cartQuantity++;
     useCatalogueStore().updateItemPrice(item);
 };
 const decreaseQuantity = (item: any) => {
-    if (item.quantity > 1) {
-        item.quantity--;
+    if (item.cartQuantity > 1) {
+        item.cartQuantity--;
         useCatalogueStore().updateItemPrice(item);
     }
 };
@@ -26,7 +26,7 @@ const decreaseQuantity = (item: any) => {
 <template>
     <div class="quantity-counter">
         <div class="decrementor" @click="decreaseQuantity(cartItem)"><p>-</p></div>
-        <div class="quantity"><p>{{ cartItem.quantity }}</p></div>
+        <div class="quantity"><p>{{ cartItem.cartQuantity }}</p></div>
         <div class="incrementor" @click="increaseQuantity(cartItem)"><p>+</p></div>
     </div>
 </template>

@@ -2,10 +2,15 @@
 
 import { Icon } from '@iconify/vue';
 
+const openBurgerMenu = (): void => {
+    const showBurgerMenu: Event = new Event('show-burgerMenu');
+    window.dispatchEvent(showBurgerMenu);
+};
+
 </script>
 
 <template>
-    <Icon icon="material-symbols:menu" class="icon" />
+    <Icon icon="material-symbols:menu" class="icon" @click="openBurgerMenu"/>
 </template>
 
 <style lang="scss" scoped>

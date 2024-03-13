@@ -81,7 +81,7 @@ const clearCart = (): void => {
     top: 0;
     right: 0;
     z-index: 199;
-    transition: transform .3s ease-in-out;
+    transition: transform .2s ease-in-out;
 
     header {
         width: 100%;

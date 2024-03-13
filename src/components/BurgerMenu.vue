@@ -3,14 +3,29 @@
 import StoreLogo from '@/sub-components/StoreLogo.vue';
 import SiteNav from '@/sub-components/SiteNav.vue';
 import { Icon } from '@iconify/vue';
+import { ref, onMounted } from 'vue';
+
+const isBurgerMenuVisible = ref<boolean>(false);
+
+// ferme le burgerMenu
+const closeBurgerMenu = (): void => {
+    isBurgerMenuVisible.value = false;
+};
+
+onMounted(() => {
+    // écoute l'évènement personnalisé emis par burgerMenuIcon
+    window.addEventListener('show-burgerMenu', () => {
+        isBurgerMenuVisible.value = true;
+    });
+})
 
 </script>
 
 <template>
-    <div class="burger-menu">
+    <div class="burger-menu" :class="{ hiddenBurgerMenu: !isBurgerMenuVisible}">
         <header>
             <StoreLogo />
-            <Icon icon="carbon:close" class="closeIcon" />
+            <Icon icon="carbon:close" class="closeIcon" @click="closeBurgerMenu"/>
         </header>
         <div class="content">
             <SiteNav />
@@ -23,6 +38,10 @@ import { Icon } from '@iconify/vue';
 @import '@/assets/colors.scss';
 @import '@/assets/breakpoints.scss';
 
+.hiddenBurgerMenu {
+    transform: translateX(100%);
+}
+
 .burger-menu {
     background: $whiteColor;
     height: 100vh;
@@ -31,7 +50,7 @@ import { Icon } from '@iconify/vue';
     top: 0;
     right: 0;
     z-index: 199;
-    display: none;
+    transition: transform .2s ease-in-out;
 
     header {
         width: 100%;

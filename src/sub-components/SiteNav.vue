@@ -5,18 +5,24 @@ import type { Category } from '@/types/CatalogueTypes';
 
 const categories: Category[] = useCatalogueStore().categories;
 
+// emet un évènement personnalisé quand item clické dans le burgerMenu
+const closeBurgerMenu = (): void => {
+    const hideBurgerMenu: Event = new Event('hide-burgerMenu');
+    window.dispatchEvent(hideBurgerMenu);
+};
+
 </script>
 
 <template>
     <div class="navItems-container">
         <div class="navItem-container">
-            <router-link to="/catalogue" class="navItem">
+            <router-link to="/catalogue" class="navItem" @click="closeBurgerMenu">
                 <p>All products</p>
                 <div class="underline" :class="{ 'active': $route.path === '/catalogue' }"></div>
             </router-link>
         </div>
         <div class="navItem-container" v-for="category in categories" :key="category.name">
-            <router-link :to="`/catalogue/${category.name}`" class="navItem">
+            <router-link :to="`/catalogue/${category.name}`" class="navItem" @click="closeBurgerMenu">
                 <p>{{ category.name }}</p>
                 <div class="underline" :class="{ 'active': $route.path === `/catalogue/${category.name}` }"></div>
             </router-link>

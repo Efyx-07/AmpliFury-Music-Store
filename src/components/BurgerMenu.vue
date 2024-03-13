@@ -17,6 +17,10 @@ onMounted(() => {
     window.addEventListener('show-burgerMenu', () => {
         isBurgerMenuVisible.value = true;
     });
+    // écoute l'évènement personnalisé emis par siteNav
+    window.addEventListener('hide-burgerMenu', () => {
+        isBurgerMenuVisible.value = false;
+    });
 })
 
 </script>

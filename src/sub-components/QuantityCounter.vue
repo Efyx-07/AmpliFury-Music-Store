@@ -53,7 +53,7 @@ const decreaseQuantity = (item: any) => {
         cursor: pointer;
 
         &:hover {
-            background: $blackColor;
+            background: $accent1;
             color: $whiteColor;
             border-color: transparent;
         }

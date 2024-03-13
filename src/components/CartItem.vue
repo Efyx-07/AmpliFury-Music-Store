@@ -93,6 +93,10 @@ const removeFromShoppingCart = (item: Product) => {
             .icon {
                 font-size: 1.1rem;
                 cursor: pointer;
+
+                &:hover {
+                    color: $accent1;
+                }
             }
         }
     }

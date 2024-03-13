@@ -96,6 +96,10 @@ const clearCart = (): void => {
         .closeIcon {
             font-size: 1.75rem;
             cursor: pointer;
+
+            &:hover {
+                color: $accent1;
+            }
         }
     }
 

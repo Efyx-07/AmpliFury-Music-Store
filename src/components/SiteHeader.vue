@@ -14,6 +14,7 @@ import CartIcon from '@/sub-components/CartIcon.vue';
             <SiteNav />
             <div class="icons-container">
                 <WishListIcon />
+                <WishListIcon />
                 <CartIcon />
             </div>
         </div>
@@ -23,6 +24,7 @@ import CartIcon from '@/sub-components/CartIcon.vue';
 <style lang="scss" scoped>
 
 @import '@/assets/colors.scss';
+@import '@/assets/breakpoints.scss';
 
 header {
     width: 100%;
@@ -47,10 +49,17 @@ header {
 
         .icons-container {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
         }
     }
 
+}
+
+@media (min-width: $breakpointLargeDesktop) {
+
+    header .content {
+        max-width: 90rem;
+    }
 }
 
 </style>

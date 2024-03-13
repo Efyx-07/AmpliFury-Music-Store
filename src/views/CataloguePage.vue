@@ -218,4 +218,17 @@ watch(selectedSortOption, () => {
     }
 }
 
+@media (min-width: $breakpointLargeDesktop) {
+
+    .page {
+        .page-heading .head-content {
+            max-width: 90rem;
+        }
+
+        .content {
+            max-width: 90rem;
+        }
+    } 
+}
+
 </style>

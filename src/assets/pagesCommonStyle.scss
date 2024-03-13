@@ -15,15 +15,14 @@
         .head-content {
             width: 100%;
             max-width: 75rem;
-            max-height: 5rem;
-            padding: 0 1rem;
+            padding: .5rem 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
 
             h1 {
-                font-size: clamp(3rem, 7vw,5rem);
-                white-space: nowrap;
+                font-size: clamp(3rem, 7vw,6rem);
+                line-height: .75;
             }
         }
     }

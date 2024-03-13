@@ -119,39 +119,7 @@ watch(selectedSortOption, () => {
 @import '@/assets/pagesCommonStyle.scss';
 
 .selectButton-container {
-    position: relative;
-    width: 14rem;
-    height: 2.5rem;
-
-    &:hover > .icon {
-        color: $accent1;
-    }
-
-    select {
-        appearance: none;
-        background: none;
-        border: solid 1px $blackColor;
-        outline: none;
-        height: 100%;
-        width: 100%;
-        font-size: 1rem;
-        padding: 0 1rem;
-        z-index: 1;
-        cursor: pointer;
-
-        &:hover > option, .icon {
-            color: $accent1;
-        }
-    }
-
-    .icon {
-        position: absolute;
-        top: 50%;
-        right: 1rem;
-        transform: translateY(-50%) rotate(90deg);
-        font-size: 2rem;
-        z-index: -1;
-    }
+    display: none;
 }
 
 .productCards-container {
@@ -165,6 +133,43 @@ watch(selectedSortOption, () => {
 }
 
 @media (min-width: $breakpointLargeMobile) {
+
+    .selectButton-container {
+        display: block;
+        position: relative;
+        width: 12rem;
+        height: 2.5rem;
+
+        &:hover > .icon {
+            color: $accent1;
+        }
+
+        select {
+            appearance: none;
+            background: none;
+            border: solid 1px $blackColor;
+            outline: none;
+            height: 100%;
+            width: 100%;
+            font-size: 1rem;
+            padding: 0 1rem;
+            z-index: 1;
+            cursor: pointer;
+
+            &:hover > option, .icon {
+                color: $accent1;
+            }
+        }
+
+        .icon {
+            position: absolute;
+            top: 50%;
+            right: .5rem;
+            transform: translateY(-50%) rotate(90deg);
+            font-size: 2rem;
+            z-index: -1;
+        }
+    }
 
     .productCards-container {
         grid-template-columns: 1fr 1fr;

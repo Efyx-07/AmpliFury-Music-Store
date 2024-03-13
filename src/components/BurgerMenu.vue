@@ -31,12 +31,12 @@ import { Icon } from '@iconify/vue';
     top: 0;
     right: 0;
     z-index: 199;
+    display: none;
 
     header {
         width: 100%;
         height: 6rem;
         background: $whiteColor;
-        //border-bottom: solid 1px $blackColor;
         display: flex; 
         align-items: center;
         justify-content: space-between;

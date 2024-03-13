@@ -4,6 +4,7 @@ import StoreLogo from '@/sub-components/StoreLogo.vue';
 import SiteNav from '@/sub-components/SiteNav.vue';
 import WishListIcon from '@/sub-components/WishListIcon.vue';
 import CartIcon from '@/sub-components/CartIcon.vue';
+import BurgerMenuIcon from '@/sub-components/BurgerMenuIcon.vue';
 
 </script>
 
@@ -11,12 +12,13 @@ import CartIcon from '@/sub-components/CartIcon.vue';
     <header>
         <div class="content">
             <StoreLogo />
-            <SiteNav />
+            <SiteNav class="siteNav"/>
             <div class="icons-container">
                 <WishListIcon />
                 <WishListIcon />
                 <CartIcon />
             </div>
+            <BurgerMenuIcon class="burgerMenuIcon"/>
         </div>
     </header>
 </template>
@@ -47,12 +49,35 @@ header {
         justify-content: space-between;
         align-items: center;
 
+        .siteNav {
+            display: none;
+        }
+
         .icons-container {
             display: flex;
-            gap: 1.5rem;
+            width: 50%;
+            justify-content: space-around;
         }
     }
+}
 
+@media (min-width: $breakpointLargeTablet) {
+    header .content {
+
+        .siteNav {
+            display: flex;
+        }
+
+        .icons-container {
+            width: unset;
+            justify-content: unset;
+            gap: 1.5rem;
+        }
+
+        .burgerMenuIcon {
+            display: none;
+        }
+    } 
 }
 
 @media (min-width: $breakpointLargeDesktop) {

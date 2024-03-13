@@ -5,6 +5,7 @@ import { useCatalogueStore } from '@/stores/CatalogueStore';
 import type { Product } from '@/types/CatalogueTypes';
 import { useRoute } from 'vue-router';
 import { computed, ref, watch } from 'vue';
+import { Icon } from '@iconify/vue';
 
 const catalogueStore = useCatalogueStore();
 
@@ -19,7 +20,7 @@ const categoryFilter = computed<string | string[]>(() => route.params.category |
 // change le titre de la page selon la categorie 
 const pageTitle = computed<string | string[]>(() => {
     const category: string | string[] = categoryFilter.value;
-    return category === 'all' ? 'All Products' : category;
+    return category === 'all' ? 'All products' : category;
 }); 
 
 // filtre les produits selon la catégorie
@@ -95,9 +96,12 @@ watch(selectedSortOption, () => {
         <div class="page-heading">
             <div class="head-content">
                 <h1>{{ pageTitle }}</h1>
-                <select class="sortSelectButton" v-model="selectedSortOption">
-                    <option v-for="selectOption in selectOptions" :key="selectOption.value" :value="selectOption.value">{{ selectOption.mention }}</option>
-                </select>
+                <div class="selectButton-container">
+                    <select class="sortSelectButton" v-model="selectedSortOption">
+                        <option v-for="selectOption in selectOptions" :key="selectOption.value" :value="selectOption.value">{{ selectOption.mention }}</option>
+                    </select>
+                    <Icon icon="material-symbols-light:play-arrow" class="icon" />
+                </div>
             </div>
         </div>
         <div class="content">
@@ -138,14 +142,40 @@ watch(selectedSortOption, () => {
                 white-space: nowrap;
             }
 
-            select {
-                background: none;
-                border: solid 1px $blackColor;
-                outline: none;
-                height: 2.5rem;
+            .selectButton-container {
+                position: relative;
                 width: 14rem;
-                font-size: 1rem;
-                padding: 0 1rem;
+                height: 2.5rem;
+
+                &:hover > .icon {
+                    color: $accent1;
+                }
+
+                select {
+                    appearance: none;
+                    background: none;
+                    border: solid 1px $blackColor;
+                    outline: none;
+                    height: 100%;
+                    width: 100%;
+                    font-size: 1rem;
+                    padding: 0 1rem;
+                    z-index: 1;
+                    cursor: pointer;
+
+                    &:hover > option, .icon {
+                        color: $accent1;
+                    }
+                }
+
+                .icon {
+                    position: absolute;
+                    top: 50%;
+                    right: 1rem;
+                    transform: translateY(-50%) rotate(90deg);
+                    font-size: 2rem;
+                    z-index: -1;
+                }
             }
         }
     }

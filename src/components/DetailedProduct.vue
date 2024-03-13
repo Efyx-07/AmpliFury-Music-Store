@@ -59,17 +59,24 @@ const addToShoppingCart = (): void => {
 <style lang="scss" scoped>
 
 @import '@/assets/colors.scss';
+@import '@/assets/breakpoints.scss';
 
 .detailed-product {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 
     .image-container {
         width: 100%;
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
 
         img {
             width: 100%;
+            display: block;
+            position: relative;
+            object-fit: cover;
         }
     }
 
@@ -79,7 +86,7 @@ const addToShoppingCart = (): void => {
         gap: 2rem;
 
         h2 {
-            font-size: 2rem;
+            font-size: clamp(1.75rem, 4vw, 2rem);
         }
 
         p {
@@ -94,12 +101,12 @@ const addToShoppingCart = (): void => {
             opacity: unset;
         }
         .price {
-            font-size: 3rem;
+            font-size: clamp(2.5rem, 5vw,3rem);
             font-weight: 700;
         }
 
         .name {
-            font-size: 1.75rem;
+            font-size: clamp(1.5rem, 3vw, 1.75rem);
             font-weight: unset;
         }
 
@@ -108,6 +115,15 @@ const addToShoppingCart = (): void => {
             flex-wrap: wrap;
             gap: 1rem;
         }
+    }
+}
+
+@media (min-width: $breakpointSmallTablet) {
+
+    .detailed-product {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
     }
 }
 

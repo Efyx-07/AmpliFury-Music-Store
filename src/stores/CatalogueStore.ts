@@ -44,7 +44,10 @@ export const useCatalogueStore = defineStore('catalogue', {
         addToWishList(product: Product): void {
             // vérifie si l'article est déjà dans la wishlist
             const isAlreadyInWishList: boolean = this.wishListItems.some(item => item.id === product.id);
-            if (!isAlreadyInWishList) {
+            // verifie si l'article est déjà dans le panier (un article ne peut pas se trouver dans la wishlist si présent dans le panier) - comparaison des ID retourne un booléen 
+            const isAlreadyInShoppingCart: boolean = this.cartItems.some(item => item.id === product.id);
+            // si article pas présent dans la wishlist ni dans le panier, envoie dans la wishlist
+            if (!isAlreadyInWishList && !isAlreadyInShoppingCart) {
                 this.wishListItems.push(product);
             }
             this.saveInLocalStorage();

@@ -48,9 +48,8 @@ const closeBurgerMenu = (): void => {
             position: relative;
             text-decoration: none;
             color: $blackColor;
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 600;
-            border-top: solid 3px $accent1;
 
             &:hover {
                 color: $accent1;
@@ -75,7 +74,6 @@ const closeBurgerMenu = (): void => {
 
             .navItem {
                 font-size: 1.25rem;
-                border-top: unset;
 
                 &:hover {
                     color: unset;

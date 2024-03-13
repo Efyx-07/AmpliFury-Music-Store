@@ -1,0 +1,49 @@
+@import './colors.scss';
+@import './breakpoints.scss';
+
+.page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .page-heading {
+        border-bottom: solid 1px $blackColor;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        .head-content {
+            width: 100%;
+            max-width: 75rem;
+            max-height: 5rem;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            h1 {
+                font-size: clamp(3rem, 7vw,5rem);
+                white-space: nowrap;
+            }
+        }
+    }
+
+    .content {
+        padding: 3rem 1rem;
+        width: 100%;
+        max-width: 75rem;
+    }
+}
+
+@media (min-width: $breakpointLargeDesktop) {
+
+    .page {
+        .page-heading .head-content {
+            max-width: 90rem;
+        }
+
+        .content {
+            max-width: 90rem;
+        }
+    } 
+}

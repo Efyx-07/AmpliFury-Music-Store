@@ -23,19 +23,23 @@ if (savedWishListItems.length > 0) {
 
 <template>
     <div class="page">
-        <h1>Wishlist</h1>
-        <div class="wishListItems-container">
-            <WishListItemCard v-for="wishListItem in wishListItems" :key="wishListItem.id" :wishListItem="wishListItem"/>
+        <div class="page-heading">
+            <div class="head-content">
+                <h1>Wishlist</h1>
+            </div>
+        </div>
+        <div class="content">
+            <div class="wishListItems-container">
+                <WishListItemCard v-for="wishListItem in wishListItems" :key="wishListItem.id" :wishListItem="wishListItem"/>
+            </div>
         </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
 
-.page .wishListItems-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 3rem;
-}
+@import '@/assets/colors.scss';
+@import '@/assets/breakpoints.scss';
+@import '@/assets/pagesCommonStyle.scss';
+
 </style>

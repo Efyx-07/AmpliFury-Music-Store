@@ -116,119 +116,73 @@ watch(selectedSortOption, () => {
 
 @import '@/assets/colors.scss';
 @import '@/assets/breakpoints.scss';
+@import '@/assets/pagesCommonStyle.scss';
 
-.page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.selectButton-container {
+    position: relative;
+    width: 14rem;
+    height: 2.5rem;
 
-    .page-heading {
-        border-bottom: solid 1px $blackColor;
+    &:hover > .icon {
+        color: $accent1;
+    }
+
+    select {
+        appearance: none;
+        background: none;
+        border: solid 1px $blackColor;
+        outline: none;
+        height: 100%;
         width: 100%;
-        display: flex;
-        justify-content: center;
+        font-size: 1rem;
+        padding: 0 1rem;
+        z-index: 1;
+        cursor: pointer;
 
-        .head-content {
-            width: 100%;
-            max-width: 75rem;
-            max-height: 5rem;
-            padding: 0 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            h1 {
-                font-size: clamp(3rem, 7vw,5rem);
-                white-space: nowrap;
-            }
-
-            .selectButton-container {
-                position: relative;
-                width: 14rem;
-                height: 2.5rem;
-
-                &:hover > .icon {
-                    color: $accent1;
-                }
-
-                select {
-                    appearance: none;
-                    background: none;
-                    border: solid 1px $blackColor;
-                    outline: none;
-                    height: 100%;
-                    width: 100%;
-                    font-size: 1rem;
-                    padding: 0 1rem;
-                    z-index: 1;
-                    cursor: pointer;
-
-                    &:hover > option, .icon {
-                        color: $accent1;
-                    }
-                }
-
-                .icon {
-                    position: absolute;
-                    top: 50%;
-                    right: 1rem;
-                    transform: translateY(-50%) rotate(90deg);
-                    font-size: 2rem;
-                    z-index: -1;
-                }
-            }
+        &:hover > option, .icon {
+            color: $accent1;
         }
     }
 
-    .content {
-        padding: 3rem 1rem;
-        width: 100%;
-        max-width: 75rem;
-
-        .productCards-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-        }
+    .icon {
+        position: absolute;
+        top: 50%;
+        right: 1rem;
+        transform: translateY(-50%) rotate(90deg);
+        font-size: 2rem;
+        z-index: -1;
     }
+}
 
-    .list-move {
-        transition: all .5s ease-in-out;
-    }
+.productCards-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.list-move {
+    transition: all .5s ease-in-out;
 }
 
 @media (min-width: $breakpointLargeMobile) {
 
-    .page .content .productCards-container {
+    .productCards-container {
         grid-template-columns: 1fr 1fr;
     }
 }
 
 @media (min-width: $breakpointSmallTablet) {
 
-    .page .content .productCards-container {
+    .productCards-container {
         grid-template-columns: 1fr 1fr 1fr;
     }
 }
 
 @media (min-width: $breakpointTablet) {
 
-    .page .content .productCards-container {
+    .productCards-container {
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
-}
-
-@media (min-width: $breakpointLargeDesktop) {
-
-    .page {
-        .page-heading .head-content {
-            max-width: 90rem;
-        }
-
-        .content {
-            max-width: 90rem;
-        }
-    } 
 }
 
 </style>

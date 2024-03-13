@@ -5,6 +5,7 @@ import { Icon } from '@iconify/vue';
 import { useCatalogueStore } from '@/stores/CatalogueStore';
 import { useGlobalDataStore } from '@/stores/GlobalDataStore';
 import { useRouter } from 'vue-router';
+import { computed } from 'vue';
 
 const props = defineProps<{
     product: Product;
@@ -13,6 +14,11 @@ const props = defineProps<{
 const catalogueStore = useCatalogueStore();
 
 const { currency } = useGlobalDataStore();
+
+// vérifie si l'article est dans la wishlist et retourne un booléen 
+const addedToWishlist = computed<boolean>(() =>{
+    return catalogueStore.wishListItems.some(item => item.id === props.product.id);
+});
 
 // ajoute un article à la wishlist
 const addToWishList = (): void => {
@@ -47,7 +53,8 @@ const addToShoppingCart = (): void => {
             </div>
             <div class="icons-container">
                 <Icon icon="ph:eye-light" class="icon" @click="navigateToProduct"/>
-                <Icon icon="clarity:heart-line" class="icon" @click="addToWishList" />
+                <Icon v-if="!addedToWishlist" icon="clarity:heart-line" class="icon" @click="addToWishList" />
+                <Icon v-else icon="mdi:heart" class="icon coloredIcon" />
                 <Icon icon="bi:cart" class="icon" @click="addToShoppingCart"/>
             </div>
         </div>
@@ -68,7 +75,6 @@ const addToShoppingCart = (): void => {
         position: relative;
         overflow: hidden;
         cursor: pointer;
-        background: green;
 
         &:hover > img {
             transform: scale(1.05);
@@ -108,6 +114,15 @@ const addToShoppingCart = (): void => {
 
             .icon {
                 font-size: 1.25rem;
+                cursor: pointer;
+
+                &:hover {
+                    color: $accent1;
+                }
+            }
+
+            .coloredIcon {
+                color: $accent1;
             }
         }
     }

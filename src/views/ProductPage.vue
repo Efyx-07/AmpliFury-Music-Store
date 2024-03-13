@@ -21,6 +21,19 @@ const selectedProduct: Product | undefined = products.find((product: Product) =>
 
 <template>
     <div class="page">
-        <DetailedProduct :selectedProduct="selectedProduct" />
+        <div class="page-heading">
+            <div class="head-content">
+                <h1 v-if="selectedProduct">{{ selectedProduct.brand }} {{ selectedProduct.model }}</h1>
+            </div>
+        </div>
+        <div class="content">
+            <DetailedProduct :selectedProduct="selectedProduct" />
+        </div>
     </div>
 </template>
+
+<style lang="scss" scoped>
+
+@import '@/assets/pagesCommonStyle.scss';
+
+</style>

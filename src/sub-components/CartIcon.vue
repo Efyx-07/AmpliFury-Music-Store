@@ -31,41 +31,6 @@ const cartItemsCount = computed<number>(() => {
 
 <style lang="scss" scoped>
 
-@import '@/assets/colors.scss';
+@import '@/assets/navIconsStyle.scss';
 
-.iconAndBadge-container {
-    position: relative;
-    height: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-
-    &:hover > .icon {
-        color: $accent1;
-    }
-
-    .icon {
-        font-size: 1.4rem;
-    }
-
-    .badge {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 1rem;
-        height: 1rem;
-        background:  $accent1;
-        border-radius: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        p {
-            color: $whiteColor;
-            font-size: .8rem;
-            font-weight: 600;
-        }
-    }
-}
 </style>

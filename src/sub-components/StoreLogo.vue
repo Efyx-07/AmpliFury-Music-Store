@@ -7,11 +7,16 @@
 <style lang="scss" scoped>
 
 .logo-container {
-    width: 4rem;
     height: 4rem;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
 
     img {
         height: 100%;
+        display: block;
+        position: relative;
+        object-fit: cover;
     }
 }
 

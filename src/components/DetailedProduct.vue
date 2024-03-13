@@ -3,15 +3,21 @@
 import type { Product } from '@/types/CatalogueTypes';
 import { useGlobalDataStore } from '@/stores/GlobalDataStore';
 import ReusablePrimaryButton from '@/sub-components/ReusablePrimaryButton.vue';
+import ReusableSecondaryButton from '@/sub-components/ReusableSecondaryButton.vue';
 import { useCatalogueStore } from '@/stores/CatalogueStore';
 
 const props = defineProps<{
-    selectedProduct: Product | undefined;
+    selectedProduct: Product;
 }>();
 
 const selectedProduct: Product | undefined = props.selectedProduct;
 
 const { currency, companyName } = useGlobalDataStore();
+
+// ajoute l'article à la wishlist
+const addToWishList = (): void => {
+    useCatalogueStore().addToWishList(selectedProduct);
+};
 
 // ajoute l'article au shoppingCart
 const addToShoppingCart = (): void => {
@@ -42,7 +48,10 @@ const addToShoppingCart = (): void => {
                 <p>Color: {{ selectedProduct.color }}</p>
                 <p>Warranty: 1 year {{ selectedProduct.brand }} / 3 years {{ companyName }}</p>
             </div>
-            <ReusablePrimaryButton @click="addToShoppingCart">Add to cart</ReusablePrimaryButton>
+            <div class="buttons-container">
+                <ReusableSecondaryButton @click="addToWishList">Add to wishlist</ReusableSecondaryButton>
+                <ReusablePrimaryButton @click="addToShoppingCart">Add to cart</ReusablePrimaryButton>
+            </div>
         </div>
     </div>
 </template>
@@ -92,6 +101,12 @@ const addToShoppingCart = (): void => {
         .name {
             font-size: 1.75rem;
             font-weight: unset;
+        }
+
+        .buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
     }
 }

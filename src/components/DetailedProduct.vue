@@ -61,7 +61,9 @@ const isProductInShoppingCart = computed<boolean>(() =>
                 <p>Warranty: 1 year {{ selectedProduct.brand }} / 3 years {{ companyName }}</p>
             </div>
             <div class="buttons-container">
-                <ReusableSecondaryButton v-if="isProductInWishList && !isProductInShoppingCart">View wishlist</ReusableSecondaryButton> 
+                <router-link to="/wishlist" v-if="isProductInWishList && !isProductInShoppingCart">
+                    <ReusableSecondaryButton>View wishlist</ReusableSecondaryButton> 
+                </router-link>
                 <ReusableSecondaryButton v-else @click="addToWishList">Add to wishlist</ReusableSecondaryButton>
                 <ReusablePrimaryButton @click="addToShoppingCart">Add to cart</ReusablePrimaryButton>
             </div>

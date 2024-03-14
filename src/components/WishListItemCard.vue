@@ -42,7 +42,9 @@ const navigateToProduct = () => {
 
 <template>
     <div class="wishListItem">
-        <h1><span v-if="index <= 8">0</span> {{ index + 1 }}</h1>
+        <div class="index-container">
+            <h1><span v-if="index <= 8">0</span> {{ index + 1 }}</h1>
+        </div>
         <div class="image-container" @click="navigateToProduct">
             <img :src="`/images` + wishListItem.image_source" alt="wishListItem.image_alt">
         </div>
@@ -71,10 +73,27 @@ const navigateToProduct = () => {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    position: relative;
 
-    h1 {
-        line-height: .9;
-        white-space: nowrap;
+    .index-container {
+        position: absolute;
+        top: .75rem;
+        left: .75rem;
+        z-index: 1;
+        background: $whiteColor;
+        height: 3.5rem;
+        width: 3.5rem;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        padding-left: .5rem;
+        border-radius: 0 0 3rem 0;
+
+
+        h1 {
+            line-height: .9;
+            white-space: nowrap;
+        }
     }
 
     .infos-container {
@@ -112,7 +131,7 @@ const navigateToProduct = () => {
 
     .wishListItem {
         display: grid;
-        grid-template-columns: .25fr 2fr 2fr;
+        grid-template-columns: 2fr 2fr;
 
         .infos-container {
             position: relative;

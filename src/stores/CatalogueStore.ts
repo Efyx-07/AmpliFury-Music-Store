@@ -145,6 +145,14 @@ export const useCatalogueStore = defineStore('catalogue', {
             const showModalOverlay: Event = new Event('show-modalOverlay');
             window.dispatchEvent(showModalOverlay); 
         },
+
+        // crée un évènement personnalisé pour fermer shoppingCart 
+        closeShoppingCart(): void {
+            // crée un évènement personnalisé
+            const hideShoppingCart: Event = new Event('hide-shoppingCart');
+            // déclenche l'évènement sur l'objet window
+            window.dispatchEvent(hideShoppingCart);
+        }
     },
 
     getters: {

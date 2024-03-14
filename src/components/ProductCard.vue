@@ -82,30 +82,11 @@ const toggleShoppingCart = () => catalogueStore.toggleShoppingCart();
 <style lang="scss" scoped>
 
 @import '@/assets/colors.scss';
+@import '@/assets/cardImageContainer.scss';
 
 .product-card {
     border: solid 1px $blackColor;
     padding: .75rem;
-
-    .image-container {
-        width: 100%;
-        display: inline-block;
-        position: relative;
-        overflow: hidden;
-        cursor: pointer;
-
-        &:hover > img {
-            transform: scale(1.05);
-        }
-
-        img {
-            width: 100%;
-            display: block;
-            position: relative;
-            object-fit: cover;
-            transition: transform .5s ease-in-out;
-        }
-    }
 
     .datas-container {
         width: 100%;

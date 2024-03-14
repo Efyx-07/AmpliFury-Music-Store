@@ -5,6 +5,7 @@ import { Icon } from '@iconify/vue';
 import { useCatalogueStore } from '@/stores/CatalogueStore';
 import { useGlobalDataStore } from '@/stores/GlobalDataStore';
 import QuantityCounter from '@/sub-components/QuantityCounter.vue';
+import { useRouter } from 'vue-router';
 
 const props = defineProps<{
     cartItem: Product;
@@ -26,11 +27,25 @@ const toggleFromShoppingCartToWishList = (item: Product) => {
     catalogueStore.toggleFromShoppingCartToWishList(item);
 };
 
+// utilise méthode du store pour fermer shoppingCart
+const closeShoppingCart = (): void => catalogueStore.closeShoppingCart();
+
+// navigue vers la page du produit selectionné 
+const router = useRouter();
+
+const navigateToProductAndCloseShoppingCart = () => {
+    closeShoppingCart();
+    router.push({
+        name: 'ProductDetail',
+        params: { productId: cartItem.id }
+    });
+};
+
 </script>
 
 <template>
     <div class="cartItem">
-        <div class="image-container">
+        <div class="image-container" @click="navigateToProductAndCloseShoppingCart">
             <img :src="`/images` + cartItem.image_source" alt="cartItem.image_alt">
         </div>
         <div class="datas-container">
@@ -48,6 +63,7 @@ const toggleFromShoppingCartToWishList = (item: Product) => {
 <style lang="scss" scoped>
 
 @import '@/assets/colors.scss';
+@import '@/assets/cardImageContainer.scss';
 
 .cartItem {
     width: 100%;
@@ -58,15 +74,6 @@ const toggleFromShoppingCartToWishList = (item: Product) => {
 
     .image-container {
         width: 10rem;
-        display: inline-block;
-        position: relative;
-
-        img {
-            width: 100%;
-            display: block;
-            position: relative;
-            object-fit: cover;
-        }
     }
 
     .datas-container {

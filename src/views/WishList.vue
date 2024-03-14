@@ -69,11 +69,4 @@ if (savedWishListItems.length > 0) {
     }
 }
 
-@media (min-width: $breakpointLargeDesktop) {
-
-    .wishListItems-container {
-        grid-template-columns: 1fr 1fr 1fr;
-    }
-}
-
 </style>

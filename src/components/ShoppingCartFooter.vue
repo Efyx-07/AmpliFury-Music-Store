@@ -8,17 +8,15 @@ import ReusableSecondaryButton from '@/sub-components/ReusableSecondaryButton.vu
 
 const { currency } = useGlobalDataStore();
 
+const catalogueStore = useCatalogueStore();
+
 // calcule le prix total des articles du shoppingCart
 const totalPrice = computed<string>(() => {
-    return useCatalogueStore().totalPrice;
+    return catalogueStore.totalPrice;
 });
 
-const closeShoppingCart = (): void => {
-    // crée un évènement personnalisé
-    const hideShoppingCart: Event = new Event('hide-shoppingCart');
-    // déclenche l'évènement sur l'objet window
-    window.dispatchEvent(hideShoppingCart);
-};
+// utilise méthode du store pour fermer shoppingCart
+const closeShoppingCart = (): void => catalogueStore.closeShoppingCart();
 
 </script>
 

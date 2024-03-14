@@ -5,6 +5,7 @@ import { useCatalogueStore } from '@/stores/CatalogueStore';
 import { useGlobalDataStore } from '@/stores/GlobalDataStore';
 import ReusablePrimaryButton from '@/sub-components/ReusablePrimaryButton.vue';
 import ReusableSecondaryButton from '@/sub-components/ReusableSecondaryButton.vue';
+import { useRouter } from 'vue-router';
 
 const props = defineProps<{
     wishListItem: Product;
@@ -28,12 +29,21 @@ const addToShoppingCart = (): void => {
     removeFromWishList(wishListItem);
 };
 
+// navigue vers la page du produit selectionné
+const router = useRouter();
+const navigateToProduct = () => {
+    router.push({
+        name: 'ProductDetail',
+        params: { productId: wishListItem.id }
+    });
+};
+
 </script>
 
 <template>
     <div class="wishListItem">
         <h1><span v-if="index <= 8">0</span> {{ index + 1 }}</h1>
-        <div class="image-container">
+        <div class="image-container" @click="navigateToProduct">
             <img :src="`/images` + wishListItem.image_source" alt="wishListItem.image_alt">
         </div>
         <div class="infos-container">
@@ -53,6 +63,7 @@ const addToShoppingCart = (): void => {
 
 @import '@/assets/colors.scss';
 @import '@/assets/breakpoints.scss';
+@import '@/assets/cardImageContainer.scss';
 
 .wishListItem {
     border: solid 1px $blackColor;
@@ -64,20 +75,6 @@ const addToShoppingCart = (): void => {
     h1 {
         line-height: .9;
         white-space: nowrap;
-    }
-
-    .image-container {
-        width: 100%;
-        display: inline-block;
-        position: relative;
-        overflow: hidden;
-
-        img {
-            width: 100%;
-            display: block;
-            position: relative;
-            object-fit: cover;
-        }
     }
 
     .infos-container {

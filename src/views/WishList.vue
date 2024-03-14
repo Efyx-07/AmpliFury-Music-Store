@@ -42,4 +42,17 @@ if (savedWishListItems.length > 0) {
 @import '@/assets/breakpoints.scss';
 @import '@/assets/pagesCommonStyle.scss';
 
+.wishListItems-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+@media (min-width: $breakpointTablet) {
+
+    .wishListItems-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
 </style>

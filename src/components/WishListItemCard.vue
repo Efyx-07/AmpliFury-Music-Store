@@ -42,8 +42,14 @@ const addToShoppingCart = (): void => {
 
 <style lang="scss" scoped>
 
+@import '@/assets/colors.scss';
+
 .wishListItem {
-    width: 20rem;
+    display: grid;
+    grid-template-columns: .75fr 2fr 3fr;
+    gap: 1rem;
+    border: solid 1px $blackColor;
+    padding: 1rem;
 
     .image-container {
         width: 100%;

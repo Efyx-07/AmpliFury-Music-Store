@@ -19,7 +19,12 @@ const { currency } = useGlobalDataStore();
 
 // vérifie si l'article est dans la wishlist et retourne un booléen 
 const addedToWishlist = computed<boolean>(() =>{
-    return catalogueStore.wishListItems.some(item => item.id === product.id);
+    return catalogueStore.checkIsProductInWishList(product);
+});
+
+// vérifie si l'article est dans le shoppingCart et retourne un booléen 
+const addedToShoppingCart = computed<boolean>(() =>{
+    return catalogueStore.checkIsProductInShoppingCart(product);
 });
 
 // ajoute un article à la wishlist
@@ -46,6 +51,9 @@ const addToShoppingCart = (): void => {
     catalogueStore.addToShoppingCart(product);
 };
 
+// utilise méthode du store pour ouvrir shoppingCart
+const toggleShoppingCart = () => catalogueStore.toggleShoppingCart();
+
 </script>
 
 <template>
@@ -62,7 +70,8 @@ const addToShoppingCart = (): void => {
                 <Icon icon="ph:eye-light" class="icon" @click="navigateToProduct"/>
                 <Icon v-if="!addedToWishlist" icon="clarity:heart-line" class="icon" @click="addToWishList" />
                 <Icon v-else icon="mdi:heart" class="icon coloredIcon" @click="removeFromWishList"/>
-                <Icon icon="bi:cart" class="icon" @click="addToShoppingCart"/>
+                <Icon v-if="!addedToShoppingCart" icon="bi:cart" class="icon" @click="addToShoppingCart"/>
+                <Icon v-else icon="bi:cart-fill" class="icon coloredIcon" @click="toggleShoppingCart"/>
             </div>
         </div>
     </div>

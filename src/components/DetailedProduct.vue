@@ -3,6 +3,7 @@
 import type { Product } from '@/types/CatalogueTypes';
 import { useGlobalDataStore } from '@/stores/GlobalDataStore';
 import ReusablePrimaryButton from '@/sub-components/ReusablePrimaryButton.vue';
+import ReusablePrimaryButtonChecked from '@/sub-components/ReusablePrimaryButtonChecked.vue';
 import ReusableSecondaryButton from '@/sub-components/ReusableSecondaryButton.vue';
 import { useCatalogueStore } from '@/stores/CatalogueStore';
 import { computed } from 'vue';
@@ -15,7 +16,7 @@ const selectedProduct: Product | undefined = props.selectedProduct;
 
 const { currency, companyName } = useGlobalDataStore();
 
-const catalogueStore = useCatalogueStore()
+const catalogueStore = useCatalogueStore();
 
 // ajoute l'article à la wishlist
 const addToWishList = (): void => {
@@ -27,14 +28,16 @@ const addToShoppingCart = (): void => {
     catalogueStore.addToShoppingCart(selectedProduct); 
 };
 
-// Utilise la propriété isInWishList du produit sélectionné
+// vérifie l'état de présence du produit selectionné dans la wishList et le shoppingCart
 const isProductInWishList = computed<boolean>(() =>
     selectedProduct ? catalogueStore.checkIsProductInWishList(selectedProduct) : false
 );
-
 const isProductInShoppingCart = computed<boolean>(() =>
     selectedProduct ? catalogueStore.checkIsProductInShoppingCart(selectedProduct) : false
 );
+
+// utilise méthode du store pour ouvrir shoppingCart
+const toggleShoppingCart = () => catalogueStore.toggleShoppingCart();
 
 </script>
 
@@ -65,7 +68,8 @@ const isProductInShoppingCart = computed<boolean>(() =>
                     <ReusableSecondaryButton>View wishlist</ReusableSecondaryButton> 
                 </router-link>
                 <ReusableSecondaryButton v-else @click="addToWishList">Add to wishlist</ReusableSecondaryButton>
-                <ReusablePrimaryButton @click="addToShoppingCart">Add to cart</ReusablePrimaryButton>
+                <ReusablePrimaryButtonChecked v-if="isProductInShoppingCart" @click="toggleShoppingCart">Added to cart</ReusablePrimaryButtonChecked>
+                <ReusablePrimaryButton v-else @click="addToShoppingCart">Add to cart</ReusablePrimaryButton>
             </div>
         </div>
     </div>

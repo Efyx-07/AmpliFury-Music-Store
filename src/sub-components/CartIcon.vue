@@ -4,18 +4,14 @@ import { Icon } from '@iconify/vue';
 import { useCatalogueStore } from '@/stores/CatalogueStore';
 import { computed } from 'vue';
 
-const toggleShoppingCart = (): void => {
-    // crée un évènement personnalisé
-    const showShoppingCart: Event = new Event('show-shoppingCart');
-    // déclenche l'évènement sur l'objet window
-    window.dispatchEvent(showShoppingCart);
-    const showModalOverlay: Event = new Event('show-modalOverlay');
-    window.dispatchEvent(showModalOverlay);
-};
+const catalogueStore = useCatalogueStore();
+
+// utilise méthode du store pour ouvrir shoppingCart
+const toggleShoppingCart = () => catalogueStore.toggleShoppingCart();
 
 // calcule et retourne le nombre d'articles présent dans shoppingCart
 const cartItemsCount = computed<number>(() => {
-    return useCatalogueStore().cartItems.length;
+    return catalogueStore.cartItems.length;
 })
 
 </script>

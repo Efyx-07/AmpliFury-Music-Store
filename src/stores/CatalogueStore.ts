@@ -40,12 +40,22 @@ export const useCatalogueStore = defineStore('catalogue', {
             localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
         },
 
+        // vérifie si l'article est dans la wishlist et retourne un booleén
+        isProductInWishlist(product: Product) {
+            return this.wishListItems.some(item => item.id === product.id);
+        },
+
+        // vérifie si l'article est dans le shoppingCart et retourne un booleén
+        isProductInShoppingCart(product: Product) {
+            return this.cartItems.some(item => item.id === product.id);
+        },
+
         // ajoute un produit à la wishlist
         addToWishList(product: Product): void {
             // vérifie si l'article est déjà dans la wishlist
-            const isAlreadyInWishList: boolean = this.wishListItems.some(item => item.id === product.id);
+            const isAlreadyInWishList: boolean = this.isProductInWishlist(product);
             // verifie si l'article est déjà dans le panier (un article ne peut pas se trouver dans la wishlist si présent dans le panier) - comparaison des ID retourne un booléen 
-            const isAlreadyInShoppingCart: boolean = this.cartItems.some(item => item.id === product.id);
+            const isAlreadyInShoppingCart: boolean = this.isProductInShoppingCart(product);
             // si article pas présent dans la wishlist ni dans le panier, envoie dans la wishlist
             if (!isAlreadyInWishList && !isAlreadyInShoppingCart) {
                 this.wishListItems.push(product);
@@ -67,7 +77,7 @@ export const useCatalogueStore = defineStore('catalogue', {
             // empeche l'affichage de l'article plus d'une fois dans le shoppingCart en comparant les id 
             const existingItem = this.cartItems.find(item => item.id === product.id);
             // vérifie si l'article ets présent dans la wishlist et retourne un booléen
-            const isAlreadyInWishList: boolean = this.wishListItems.some(item => item.id === product.id);
+            const isAlreadyInWishList: boolean = this.isProductInWishlist(product);
             if (existingItem) {
                 existingItem.cartQuantity++; // si article déjà présent dans shoppingCart, alors augmente la quantité
                 this.updateItemPrice(existingItem); // met à jour le prix
@@ -109,7 +119,7 @@ export const useCatalogueStore = defineStore('catalogue', {
         // rebascule article du panier vers la wishlist
         toggleFromShoppingCartToWishList(product: Product): void {
             // vérifie si l'article ets présent dans la wishlist et retourne un booléen
-            const isAlreadyInWishList: boolean = this.wishListItems.some(item => item.id === product.id);
+            const isAlreadyInWishList: boolean = this.isProductInWishlist(product);
             // supprime article du panier
             if (!isAlreadyInWishList) {
                 this.removeFromShoppingCart(product);

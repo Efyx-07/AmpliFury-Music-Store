@@ -11,32 +11,39 @@ const props = defineProps<{
     product: Product;
 }>();
 
+const product: Product = props.product;
+
 const catalogueStore = useCatalogueStore();
 
 const { currency } = useGlobalDataStore();
 
 // vérifie si l'article est dans la wishlist et retourne un booléen 
 const addedToWishlist = computed<boolean>(() =>{
-    return catalogueStore.wishListItems.some(item => item.id === props.product.id);
+    return catalogueStore.wishListItems.some(item => item.id === product.id);
 });
 
 // ajoute un article à la wishlist
 const addToWishList = (): void => {
-    catalogueStore.addToWishList(props.product);
+    catalogueStore.addToWishList(product);
 };
+
+// supprime un article de la wishlist
+const removeFromWishList = (): void => {
+    catalogueStore.removeFromWishList(product);
+}
 
 // navigue vers la page du produit selectionné
 const router = useRouter();
 const navigateToProduct = () => {
     router.push({
         name: 'ProductDetail',
-        params: { productId: props.product.id }
+        params: { productId: product.id }
     });
 };
 
 // ajoute un article au shoppingCart
 const addToShoppingCart = (): void => {
-    catalogueStore.addToShoppingCart(props.product);
+    catalogueStore.addToShoppingCart(product);
 };
 
 </script>
@@ -44,17 +51,17 @@ const addToShoppingCart = (): void => {
 <template>
     <div class="product-card">
         <div class="image-container" @click="navigateToProduct">
-            <img :src="`/images` + props.product.image_source" alt="props.product.image_alt">
+            <img :src="`/images` + product.image_source" alt="product.image_alt">
         </div>
         <div class="datas-container">
             <div class="infos-container">
-                <p class="item-name">{{ props.product.brand }} {{ props.product.model }}</p>
-                <p class="item-price">{{ props.product.price }} {{ currency }}</p>
+                <p class="item-name">{{ product.brand }} {{ product.model }}</p>
+                <p class="item-price">{{ product.price }} {{ currency }}</p>
             </div>
             <div class="icons-container">
                 <Icon icon="ph:eye-light" class="icon" @click="navigateToProduct"/>
                 <Icon v-if="!addedToWishlist" icon="clarity:heart-line" class="icon" @click="addToWishList" />
-                <Icon v-else icon="mdi:heart" class="icon coloredIcon" />
+                <Icon v-else icon="mdi:heart" class="icon coloredIcon" @click="removeFromWishList"/>
                 <Icon icon="bi:cart" class="icon" @click="addToShoppingCart"/>
             </div>
         </div>

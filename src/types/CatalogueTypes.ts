@@ -24,6 +24,7 @@ export interface Product {
     reference_year: string | number;
     color: string;
     cartQuantity: number;
+    initialPrice: string;
 }
 
 export interface CatalogueApiResponse {

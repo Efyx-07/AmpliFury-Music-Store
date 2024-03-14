@@ -99,7 +99,23 @@ export const useCatalogueStore = defineStore('catalogue', {
                 item.initialPrice = item.price;
             }
             this.saveInLocalStorage();
-        }
+        },
+
+        // rebascule article du panier vers la wishlist
+        toggleFromShoppingCartToWishList(product: Product): void {
+            //vérifie si l'article est déja dans la wishlist
+            const isAlreadyInWishList: boolean = this.wishListItems.some(item => item.id === product.id);
+            // supprime article du panier
+            if (!isAlreadyInWishList) {
+                this.removeFromShoppingCart(product);
+                // réintialise la quantité et le prix
+                product.cartQuantity = 1;
+                product.price = product.initialPrice;
+                // ajoute l'article à la wishList
+                this.addToWishList(product);
+                this.saveInLocalStorage();
+            };
+        },
     },
 
     getters: {

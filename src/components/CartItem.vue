@@ -21,6 +21,11 @@ const removeFromShoppingCart = (item: Product) => {
     catalogueStore.removeFromShoppingCart(item);
 };
 
+// supprime l'article du shoppingCart et le rebascule dans la wishlist
+const toggleFromShoppingCartToWishList = (item: Product) => {
+    catalogueStore.toggleFromShoppingCartToWishList(item);
+};
+
 </script>
 
 <template>
@@ -33,7 +38,7 @@ const removeFromShoppingCart = (item: Product) => {
             <p class="item-price">{{ cartItem.price }} {{ currency }}</p>
             <QuantityCounter :cartItem="cartItem" class="counter"/>
             <div class="icons-container">
-                <Icon icon="clarity:heart-line" class="icon" />
+                <Icon icon="clarity:heart-line" class="icon" @click="toggleFromShoppingCartToWishList(cartItem)"/>
                 <Icon icon="ph:trash-light" class="icon" @click="removeFromShoppingCart(cartItem)"/>
             </div>
         </div>

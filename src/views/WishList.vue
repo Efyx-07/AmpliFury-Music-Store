@@ -48,10 +48,31 @@ if (savedWishListItems.length > 0) {
     gap: 1rem;
 }
 
-@media (min-width: $breakpointTablet) {
+@media (min-width: $breakpointLargeMobile) {
 
     .wishListItems-container {
         grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: $breakpointSmallTablet) {
+
+    .wishListItems-container {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media (min-width: $breakpointDesktop) {
+
+    .wishListItems-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: $breakpointLargeDesktop) {
+
+    .wishListItems-container {
+        grid-template-columns: 1fr 1fr 1fr;
     }
 }
 

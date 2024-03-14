@@ -1,9 +1,10 @@
 <script setup lang="ts">
 
 import type { Product } from '@/types/CatalogueTypes';
-import { Icon } from '@iconify/vue';
 import { useCatalogueStore } from '@/stores/CatalogueStore';
+import { useGlobalDataStore } from '@/stores/GlobalDataStore';
 import ReusablePrimaryButton from '@/sub-components/ReusablePrimaryButton.vue';
+import ReusableSecondaryButton from '@/sub-components/ReusableSecondaryButton.vue';
 
 const props = defineProps<{
     wishListItem: Product;
@@ -13,6 +14,8 @@ const props = defineProps<{
 const wishListItem: Product = props.wishListItem;
 
 const catalogueStore = useCatalogueStore();
+
+const { currency } = useGlobalDataStore();
 
 // supprime l'article de la wishList
 const removeFromWishList = (item: Product) => {
@@ -34,11 +37,13 @@ const addToShoppingCart = (): void => {
             <img :src="`/images` + wishListItem.image_source" alt="wishListItem.image_alt">
         </div>
         <div class="infos-container">
-            <p>{{ wishListItem.brand }} {{ wishListItem.model }}</p>
-            <Icon icon="bi:cart" class="icon" @click="addToShoppingCart"/>
-            <Icon icon="ph:trash-light" class="icon" @click="removeFromWishList(wishListItem)"/>
+            <div class="about-container">
+                <p class="item-name">{{ wishListItem.brand }} {{ wishListItem.model }}</p>
+                <p class="item-price">{{ wishListItem.price }} {{ currency }}</p>
+            </div>
             <div class="buttons-container">
-                <ReusablePrimaryButton class="smalledButton">Add to cart</ReusablePrimaryButton>
+                <ReusableSecondaryButton class="smalledButton" @click="removeFromWishList(wishListItem)">Remove</ReusableSecondaryButton>
+                <ReusablePrimaryButton class="smalledButton" @click="addToShoppingCart">Add to cart</ReusablePrimaryButton>
             </div>
         </div>
     </div>
@@ -47,13 +52,19 @@ const addToShoppingCart = (): void => {
 <style lang="scss" scoped>
 
 @import '@/assets/colors.scss';
+@import '@/assets/breakpoints.scss';
 
 .wishListItem {
-    display: grid;
-    grid-template-columns: .75fr 2fr 3fr;
-    gap: 1rem;
     border: solid 1px $blackColor;
-    padding: 1rem;
+    padding: .75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    h1 {
+        line-height: .9;
+        white-space: nowrap;
+    }
 
     .image-container {
         width: 100%;
@@ -70,15 +81,52 @@ const addToShoppingCart = (): void => {
     }
 
     .infos-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        .about-container {
+
+            .item-name {
+                font-size: 1.25rem;
+            }
+
+            .item-price {
+                font-size: 1.5rem;
+                font-weight: 600;
+            }
+        }
+
         .buttons-container {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+
             .smalledButton {
-                width: 8rem;
+                width: 100%;
                 height: 2rem;
                 font-size: .8rem;
             }
         }
     }
+}
 
+@media (min-width: $breakpointDesktop) {
+
+    .wishListItem {
+        display: grid;
+        grid-template-columns: .25fr 2fr 2fr;
+
+        .infos-container {
+            position: relative;
+
+            .buttons-container { 
+                position: absolute;
+                top: 50%;
+                width: 100%;
+            }
+        }
+    }
 }
 
 </style>

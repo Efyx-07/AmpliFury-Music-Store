@@ -30,7 +30,9 @@ if (savedWishListItems.length > 0) {
         </div>
         <div class="content">
             <div class="wishListItems-container">
-                <WishListItemCard v-for="wishListItem in wishListItems" :key="wishListItem.id" :wishListItem="wishListItem"/>
+                <div class="wishListItem-container" v-for="(wishListItem, index) in wishListItems" :key="wishListItem.id">
+                    <WishListItemCard :wishListItem="wishListItem" :index="index"/>
+                </div>
             </div>
         </div>
     </div>

@@ -4,6 +4,8 @@ import { useCatalogueStore } from '@/stores/CatalogueStore';
 import type { Product } from '@/types/CatalogueTypes';
 import WishListItemCard from '@/components/WishListItemCard.vue';
 import { computed } from 'vue';
+import ReusablePrimaryButton from '@/sub-components/ReusablePrimaryButton.vue';
+import ReusableSecondaryButton from '@/sub-components/ReusableSecondaryButton.vue';
 
 const catalogueStore = useCatalogueStore();
 
@@ -11,6 +13,12 @@ const catalogueStore = useCatalogueStore();
 const wishListItems = computed<Product[]>(() => {
     return catalogueStore.wishListItems;
 });
+
+// utilise méthode du store pour vider la wishList de tous ses articles 
+const clearWishList = (): void => catalogueStore.clearWishList();
+
+// utilise méthode du store pour ajouter tous les articles de la wishlist dans le shoppingCart
+const addAllToShoppingCart = (): void => catalogueStore.addAllItemsFromWishListToShoppingCart()
 
 // récupère les données stockées dans le localStorage
 const savedWishListItemsJSON = localStorage.getItem('wishListItems');
@@ -32,6 +40,10 @@ if (savedWishListItems.length > 0) {
             <div class="wishListItems-container">
                 <WishListItemCard v-for="(wishListItem, index) in wishListItems" :key="wishListItem.id" :wishListItem="wishListItem" :index="index"/>
             </div>
+            <div class="buttons-container" v-if="wishListItems.length >= 1">
+                <ReusableSecondaryButton @click="clearWishList">Clear wishlist</ReusableSecondaryButton>
+                <ReusablePrimaryButton @click="addAllToShoppingCart">Add all to cart</ReusablePrimaryButton>
+            </div>
         </div>
     </div>
 </template>
@@ -42,16 +54,33 @@ if (savedWishListItems.length > 0) {
 @import '@/assets/breakpoints.scss';
 @import '@/assets/pagesCommonStyle.scss';
 
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
 .wishListItems-container {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
 }
 
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    align-self: flex-end;
+}
+
 @media (min-width: $breakpointLargeMobile) {
 
     .wishListItems-container {
         grid-template-columns: 1fr 1fr;
+    }
+
+    .buttons-container {
+        flex-direction: row;
     }
 }
 

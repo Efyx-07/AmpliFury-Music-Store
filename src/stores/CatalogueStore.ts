@@ -74,6 +74,22 @@ export const useCatalogueStore = defineStore('catalogue', {
             this.saveInLocalStorage();
         },
 
+        // ajoute tous les articles de la wishlist dans le shoppingCart
+        addAllItemsFromWishListToShoppingCart(): void {
+            this.wishListItems.forEach(item => {
+                const cartItemToAdd: Product = { ...item, cartQuantity: 1, initialPrice: item.price };
+                this.cartItems.push(cartItemToAdd);
+            });
+            // vide la wishlist après l'ajout dans shoppingCart
+            this.clearWishList();
+        },
+
+        // vide la wishList de tous ses articles
+        clearWishList(): void {
+            this.wishListItems = [];
+            this.saveInLocalStorage();
+        },
+
         // ajoute un article au shoppingCart
         addToShoppingCart(product: Product): void {
             // empeche l'affichage de l'article plus d'une fois dans le shoppingCart en comparant les id 

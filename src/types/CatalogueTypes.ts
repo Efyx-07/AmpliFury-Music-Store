@@ -25,6 +25,8 @@ export interface Product {
     color: string;
     cartQuantity: number;
     initialPrice: string;
+    isInWishList: boolean;
+    isInShoppingCart: boolean;
 }
 
 export interface CatalogueApiResponse {

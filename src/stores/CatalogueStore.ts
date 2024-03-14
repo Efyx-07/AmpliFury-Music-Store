@@ -41,23 +41,24 @@ export const useCatalogueStore = defineStore('catalogue', {
         },
 
         // vérifie si l'article est dans la wishlist et retourne un booleén
-        isProductInWishlist(product: Product) {
+        checkIsProductInWishList(product: Product): boolean {
             return this.wishListItems.some(item => item.id === product.id);
         },
 
         // vérifie si l'article est dans le shoppingCart et retourne un booleén
-        isProductInShoppingCart(product: Product) {
+        checkIsProductInShoppingCart(product: Product): boolean {
             return this.cartItems.some(item => item.id === product.id);
         },
 
         // ajoute un produit à la wishlist
         addToWishList(product: Product): void {
             // vérifie si l'article est déjà dans la wishlist
-            const isAlreadyInWishList: boolean = this.isProductInWishlist(product);
+            const isAlreadyInWishList: boolean = this.checkIsProductInWishList(product);
             // verifie si l'article est déjà dans le panier (un article ne peut pas se trouver dans la wishlist si présent dans le panier) - comparaison des ID retourne un booléen 
-            const isAlreadyInShoppingCart: boolean = this.isProductInShoppingCart(product);
+            const isAlreadyInShoppingCart: boolean = this.checkIsProductInShoppingCart(product);
             // si article pas présent dans la wishlist ni dans le panier, envoie dans la wishlist
             if (!isAlreadyInWishList && !isAlreadyInShoppingCart) {
+                product.isInWishList = true;
                 this.wishListItems.push(product);
             }
             this.saveInLocalStorage();
@@ -68,6 +69,7 @@ export const useCatalogueStore = defineStore('catalogue', {
             const index = this.wishListItems.findIndex(item => item.id === product.id);
             if (index !== -1) {
                 this.wishListItems.splice(index, 1);
+                product.isInWishList = false;
             };
             this.saveInLocalStorage();
         },
@@ -77,13 +79,14 @@ export const useCatalogueStore = defineStore('catalogue', {
             // empeche l'affichage de l'article plus d'une fois dans le shoppingCart en comparant les id 
             const existingItem = this.cartItems.find(item => item.id === product.id);
             // vérifie si l'article ets présent dans la wishlist et retourne un booléen
-            const isAlreadyInWishList: boolean = this.isProductInWishlist(product);
+            const isAlreadyInWishList: boolean = this.checkIsProductInWishList(product);
             if (existingItem) {
                 existingItem.cartQuantity++; // si article déjà présent dans shoppingCart, alors augmente la quantité
                 this.updateItemPrice(existingItem); // met à jour le prix
             } else {
                 const itemToAdd = { ...product, cartQuantity: 1, initialPrice: product.price }; // initialPrice est défini ici pour maj du prix dans le shoppingCart selon la quantité
-                this.cartItems.push(itemToAdd); 
+                product.isInShoppingCart = true;
+                this.cartItems.push(itemToAdd);
             }
             if (isAlreadyInWishList) {
                 this.removeFromWishList(product);
@@ -96,6 +99,7 @@ export const useCatalogueStore = defineStore('catalogue', {
             const index = this.cartItems.findIndex(item => item.id === product.id);
             if (index !== -1) {
                 this.cartItems.splice(index, 1);
+                product.isInShoppingCart = false;
             };
             this.saveInLocalStorage();
         },
@@ -119,7 +123,7 @@ export const useCatalogueStore = defineStore('catalogue', {
         // rebascule article du panier vers la wishlist
         toggleFromShoppingCartToWishList(product: Product): void {
             // vérifie si l'article ets présent dans la wishlist et retourne un booléen
-            const isAlreadyInWishList: boolean = this.isProductInWishlist(product);
+            const isAlreadyInWishList: boolean = this.checkIsProductInWishList(product);
             // supprime article du panier
             if (!isAlreadyInWishList) {
                 this.removeFromShoppingCart(product);

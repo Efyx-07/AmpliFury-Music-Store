@@ -5,6 +5,7 @@ import { useGlobalDataStore } from '@/stores/GlobalDataStore';
 import ReusablePrimaryButton from '@/sub-components/ReusablePrimaryButton.vue';
 import ReusableSecondaryButton from '@/sub-components/ReusableSecondaryButton.vue';
 import { useCatalogueStore } from '@/stores/CatalogueStore';
+import { computed } from 'vue';
 
 const props = defineProps<{
     selectedProduct: Product;
@@ -14,15 +15,26 @@ const selectedProduct: Product | undefined = props.selectedProduct;
 
 const { currency, companyName } = useGlobalDataStore();
 
+const catalogueStore = useCatalogueStore()
+
 // ajoute l'article à la wishlist
 const addToWishList = (): void => {
-    useCatalogueStore().addToWishList(selectedProduct);
+    catalogueStore.addToWishList(selectedProduct); 
 };
 
 // ajoute l'article au shoppingCart
 const addToShoppingCart = (): void => {
-    useCatalogueStore().addToShoppingCart(selectedProduct);
+    catalogueStore.addToShoppingCart(selectedProduct); 
 };
+
+// Utilise la propriété isInWishList du produit sélectionné
+const isProductInWishList = computed<boolean>(() =>
+    selectedProduct ? catalogueStore.checkIsProductInWishList(selectedProduct) : false
+);
+
+const isProductInShoppingCart = computed<boolean>(() =>
+    selectedProduct ? catalogueStore.checkIsProductInShoppingCart(selectedProduct) : false
+);
 
 </script>
 
@@ -49,7 +61,8 @@ const addToShoppingCart = (): void => {
                 <p>Warranty: 1 year {{ selectedProduct.brand }} / 3 years {{ companyName }}</p>
             </div>
             <div class="buttons-container">
-                <ReusableSecondaryButton @click="addToWishList">Add to wishlist</ReusableSecondaryButton>
+                <ReusableSecondaryButton v-if="isProductInWishList && !isProductInShoppingCart">View wishlist</ReusableSecondaryButton> 
+                <ReusableSecondaryButton v-else @click="addToWishList">Add to wishlist</ReusableSecondaryButton>
                 <ReusablePrimaryButton @click="addToShoppingCart">Add to cart</ReusablePrimaryButton>
             </div>
         </div>

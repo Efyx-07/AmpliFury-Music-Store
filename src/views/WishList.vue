@@ -25,7 +25,7 @@ if (savedWishListItems.length > 0) {
     <div class="page">
         <div class="page-heading">
             <div class="head-content">
-                <h1>Wishlist</h1>
+                <h1>Wishlist [{{ wishListItems.length }}]</h1>
             </div>
         </div>
         <div class="content">

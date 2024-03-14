@@ -65,7 +65,7 @@ const toggleShoppingCart = () => catalogueStore.toggleShoppingCart();
             </div>
             <div class="buttons-container">
                 <div v-if="!isProductInShoppingCart">
-                    <router-link to="/wishlist" v-if="isProductInWishList">
+                    <router-link to="/wishlist" v-if="isProductInWishList" class="navButton">
                         <ReusableSecondaryButton>View wishlist</ReusableSecondaryButton> 
                     </router-link>
                     <ReusableSecondaryButton v-else @click="addToWishList">Add to wishlist</ReusableSecondaryButton>
@@ -135,6 +135,10 @@ const toggleShoppingCart = () => catalogueStore.toggleShoppingCart();
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
+
+            .navButton {
+                text-decoration: none;
+            }
         }
     }
 }

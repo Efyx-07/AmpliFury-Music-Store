@@ -3,6 +3,7 @@
 import type { Product } from '@/types/CatalogueTypes';
 import { Icon } from '@iconify/vue';
 import { useCatalogueStore } from '@/stores/CatalogueStore';
+import ReusablePrimaryButton from '@/sub-components/ReusablePrimaryButton.vue';
 
 const props = defineProps<{
     wishListItem: Product;
@@ -36,6 +37,9 @@ const addToShoppingCart = (): void => {
             <p>{{ wishListItem.brand }} {{ wishListItem.model }}</p>
             <Icon icon="bi:cart" class="icon" @click="addToShoppingCart"/>
             <Icon icon="ph:trash-light" class="icon" @click="removeFromWishList(wishListItem)"/>
+            <div class="buttons-container">
+                <ReusablePrimaryButton class="smalledButton">Add to cart</ReusablePrimaryButton>
+            </div>
         </div>
     </div>
 </template>
@@ -64,6 +68,17 @@ const addToShoppingCart = (): void => {
             object-fit: cover;
         }
     }
+
+    .infos-container {
+        .buttons-container {
+            .smalledButton {
+                width: 8rem;
+                height: 2rem;
+                font-size: .8rem;
+            }
+        }
+    }
+
 }
 
 </style>

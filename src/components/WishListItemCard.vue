@@ -17,6 +17,12 @@ const removeFromWishList = (item: Product) => {
     catalogueStore.removeFromWishList(item);
 };
 
+// ajoute l'article au shoppingCart
+const addToShoppingCart = (): void => {
+    catalogueStore.addToShoppingCart(wishListItem);
+    removeFromWishList(wishListItem);
+};
+
 </script>
 
 <template>
@@ -25,6 +31,7 @@ const removeFromWishList = (item: Product) => {
             <img :src="`/images` + wishListItem.image_source" alt="wishListItem.image_alt">
         </div>
         <p>{{ wishListItem.brand }} {{ wishListItem.model }}</p>
+        <Icon icon="bi:cart" class="icon" @click="addToShoppingCart"/>
         <Icon icon="ph:trash-light" class="icon" @click="removeFromWishList(wishListItem)"/>
     </div>
 </template>

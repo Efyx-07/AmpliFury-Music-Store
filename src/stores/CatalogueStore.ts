@@ -66,12 +66,17 @@ export const useCatalogueStore = defineStore('catalogue', {
         addToShoppingCart(product: Product): void {
             // empeche l'affichage de l'article plus d'une fois dans le shoppingCart en comparant les id 
             const existingItem = this.cartItems.find(item => item.id === product.id);
-            if(existingItem) {
+            // vérifie si l'article ets présent dans la wishlist et retourne un booléen
+            const isAlreadyInWishList: boolean = this.wishListItems.some(item => item.id === product.id);
+            if (existingItem) {
                 existingItem.cartQuantity++; // si article déjà présent dans shoppingCart, alors augmente la quantité
                 this.updateItemPrice(existingItem); // met à jour le prix
             } else {
                 const itemToAdd = { ...product, cartQuantity: 1, initialPrice: product.price }; // initialPrice est défini ici pour maj du prix dans le shoppingCart selon la quantité
                 this.cartItems.push(itemToAdd); 
+            }
+            if (isAlreadyInWishList) {
+                this.removeFromWishList(product);
             }
             this.saveInLocalStorage();
         },
@@ -103,7 +108,7 @@ export const useCatalogueStore = defineStore('catalogue', {
 
         // rebascule article du panier vers la wishlist
         toggleFromShoppingCartToWishList(product: Product): void {
-            //vérifie si l'article est déja dans la wishlist
+            // vérifie si l'article ets présent dans la wishlist et retourne un booléen
             const isAlreadyInWishList: boolean = this.wishListItems.some(item => item.id === product.id);
             // supprime article du panier
             if (!isAlreadyInWishList) {

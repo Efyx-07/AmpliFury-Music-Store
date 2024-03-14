@@ -93,7 +93,7 @@ const addToShoppingCart = (): void => {
             font-family: "Poppins", sans-serif;;
             font-size: .9rem;
             font-weight: 500;
-            opacity: .9;
+            opacity: .75;
         }
 
         .price, .name {

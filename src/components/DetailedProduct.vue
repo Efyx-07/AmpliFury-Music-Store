@@ -20,7 +20,7 @@ const catalogueStore = useCatalogueStore();
 
 // ajoute l'article à la wishlist
 const addToWishList = (): void => {
-    catalogueStore.addToWishList(selectedProduct); 
+    catalogueStore.addToWishList(selectedProduct);
 };
 
 // ajoute l'article au shoppingCart
@@ -64,10 +64,12 @@ const toggleShoppingCart = () => catalogueStore.toggleShoppingCart();
                 <p>Warranty: 1 year {{ selectedProduct.brand }} / 3 years {{ companyName }}</p>
             </div>
             <div class="buttons-container">
-                <router-link to="/wishlist" v-if="isProductInWishList && !isProductInShoppingCart">
-                    <ReusableSecondaryButton>View wishlist</ReusableSecondaryButton> 
-                </router-link>
-                <ReusableSecondaryButton v-else @click="addToWishList">Add to wishlist</ReusableSecondaryButton>
+                <div v-if="!isProductInShoppingCart">
+                    <router-link to="/wishlist" v-if="isProductInWishList">
+                        <ReusableSecondaryButton>View wishlist</ReusableSecondaryButton> 
+                    </router-link>
+                    <ReusableSecondaryButton v-else @click="addToWishList">Add to wishlist</ReusableSecondaryButton>
+                </div>
                 <ReusablePrimaryButtonChecked v-if="isProductInShoppingCart" @click="toggleShoppingCart">Added to cart</ReusablePrimaryButtonChecked>
                 <ReusablePrimaryButton v-else @click="addToShoppingCart">Add to cart</ReusablePrimaryButton>
             </div>

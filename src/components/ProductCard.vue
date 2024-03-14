@@ -68,8 +68,10 @@ const toggleShoppingCart = () => catalogueStore.toggleShoppingCart();
             </div>
             <div class="icons-container">
                 <Icon icon="ph:eye-light" class="icon" @click="navigateToProduct"/>
-                <Icon v-if="!addedToWishlist" icon="clarity:heart-line" class="icon" @click="addToWishList" />
-                <Icon v-else icon="mdi:heart" class="icon coloredIcon" @click="removeFromWishList"/>
+                <div v-if="!addedToShoppingCart">
+                    <Icon v-if="!addedToWishlist" icon="clarity:heart-line" class="icon" @click="addToWishList" />
+                    <Icon v-else icon="mdi:heart" class="icon coloredIcon" @click="removeFromWishList"/>
+                </div>
                 <Icon v-if="!addedToShoppingCart" icon="bi:cart" class="icon" @click="addToShoppingCart"/>
                 <Icon v-else icon="bi:cart-fill" class="icon coloredIcon" @click="toggleShoppingCart"/>
             </div>

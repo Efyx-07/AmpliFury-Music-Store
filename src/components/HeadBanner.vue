@@ -9,7 +9,7 @@ import ReusablePrimaryButton from '@/sub-components/ReusablePrimaryButton.vue';
         <div class="text-container">
             <h1>What's new in the garage ?</h1>
             <p>Find your next sound</p>
-            <ReusablePrimaryButton>Start browing</ReusablePrimaryButton>
+            <ReusablePrimaryButton>Start browsing</ReusablePrimaryButton>
         </div>
         <div class="image-container">
             <img src="/images/decoration/headPic.png" alt="gorilla-rocker">
@@ -23,7 +23,7 @@ import ReusablePrimaryButton from '@/sub-components/ReusablePrimaryButton.vue';
 
 .head-banner {
     background: $accent1;
-    border: solid 5px $blackColor; 
+    border: solid .25rem $blackColor; 
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 2rem;

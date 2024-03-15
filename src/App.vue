@@ -5,6 +5,7 @@ import SiteHeader from '@/components/SiteHeader.vue';
 import ShoppingCart from './components/ShoppingCart.vue';
 import BurgerMenu from './components/BurgerMenu.vue';
 import WishList from './views/WishList.vue';
+import SiteFooter from './components/SiteFooter.vue';
 
 import { ref } from 'vue';
 
@@ -16,6 +17,7 @@ const hideWishlist = ref(true);
 <template>
   <SiteHeader />
   <RouterView />
+  <SiteFooter />
   <ShoppingCart />
   <BurgerMenu />
 

@@ -111,7 +111,7 @@ const toggleShoppingCart = () => catalogueStore.toggleShoppingCart();
         }
 
         p {
-            font-family: "Poppins", sans-serif;;
+            font-family: "Poppins", sans-serif;
             font-size: .9rem;
             font-weight: 500;
             opacity: .75;

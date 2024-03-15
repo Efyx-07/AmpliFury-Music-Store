@@ -1,7 +1,8 @@
 <script setup lang="ts">
 
-import HeadBanner from '@/components/HeadBanner.vue';
+import SectionHeading from '@/components/SectionHeading.vue';
 import SectionCategories from '@/components/SectionCategories.vue';
+import SectionCommitments from '@/components/SectionCommitments.vue';
 import { useGlobalDataStore } from '@/stores/GlobalDataStore';
 
 const companyName: string = useGlobalDataStore().companyName;
@@ -17,7 +18,7 @@ const companyName: string = useGlobalDataStore().companyName;
                 </div>
             </div>
             <div class="content">
-                <HeadBanner />
+                <SectionHeading />
             </div>
         </div>
         <div class="section-container">
@@ -28,6 +29,16 @@ const companyName: string = useGlobalDataStore().companyName;
             </div>
             <div class="content">
                 <SectionCategories />
+            </div>
+        </div>
+        <div class="section-container">
+            <div class="section-heading">
+                <div class="head-content">
+                    <h1>Order, get, enjoy</h1>
+                </div>
+            </div>
+            <div class="content">
+                <SectionCommitments />
             </div>
         </div>
     </div>
@@ -42,6 +53,8 @@ const companyName: string = useGlobalDataStore().companyName;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 3rem;
+    padding-bottom: 6rem;
 
     .section-container {
         width: 100%;
@@ -74,7 +87,7 @@ const companyName: string = useGlobalDataStore().companyName;
         }
 
         .content {
-            padding: 3rem 1rem;
+            padding: 3rem 1rem 3rem 1rem;
             width: 100%;
             max-width: 90rem;
         }

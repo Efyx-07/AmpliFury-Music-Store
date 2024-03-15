@@ -18,10 +18,11 @@ const scrollToTop = (): void => {
 <style lang="scss" scoped>
 
 @import '@/assets/colors.scss';
+@import '@/assets/breakpoints.scss';
 
 .toTop-button {
-    width: 4.5rem;
-    height: 4.5rem;
+    width: 3.5rem;
+    height: 3.5rem;
     background: $whiteColor;
     border: solid .25rem $blackColor;
     border-radius: 100%;
@@ -36,9 +37,22 @@ const scrollToTop = (): void => {
     } 
 
     p {
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-weight: 700;
         letter-spacing: 1.5px;
     }
 }
+
+@media (min-width: $breakpointSmallTablet) {
+
+    .toTop-button {
+        width: 4.5rem;
+        height: 4.5rem;
+
+        p {
+            font-size: 1.75rem;
+        }
+    }
+}
+
 </style>

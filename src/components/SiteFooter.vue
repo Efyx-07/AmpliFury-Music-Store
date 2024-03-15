@@ -50,7 +50,7 @@ footer {
 
         .toTop-button {
             position: absolute;
-            bottom: -3rem;
+            bottom: -2rem;
             right: 1rem;
         }
     }
@@ -59,7 +59,7 @@ footer {
         width: 100%;
         background: $blackColor;
         color: $whiteColor;
-        padding: 2rem;
+        padding: 1.5rem;
         display: flex;
         justify-content: center;
 
@@ -82,6 +82,14 @@ footer {
         display: grid;
         grid-template-columns: 1fr 1fr; 
         gap: 3rem;
+
+        .toTop-button {
+            bottom: -3rem;
+        }
+    }
+
+    footer .bottom-content {
+        padding: 2rem;
     }
 }
 

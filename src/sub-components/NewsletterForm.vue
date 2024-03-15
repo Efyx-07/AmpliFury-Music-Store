@@ -5,9 +5,9 @@ import ReusablePrimaryButton from './ReusablePrimaryButton.vue';
 </script>
 
 <template>
-    <div class="newsletter">
+    <div class="footer-section">
         <h1>Newsletter</h1>
-        <form action="" class="newsletterForm">
+        <form action="" class="content">
             <input type="mail" id="email-input" name="email" placeholder= "Enter your email address">
             <div class="button-container">
                 <ReusablePrimaryButton>Subscribe</ReusablePrimaryButton>
@@ -20,13 +20,14 @@ import ReusablePrimaryButton from './ReusablePrimaryButton.vue';
 
 @import '@/assets/colors.scss';
 
-.newsletter {
+.footer-section {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 
-    form {
+    .content {
         display: flex;
+        align-items: center;
         gap: .5rem;
 
         input {

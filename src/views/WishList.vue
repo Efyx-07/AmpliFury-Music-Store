@@ -54,6 +54,10 @@ if (savedWishListItems.length > 0) {
 @import '@/assets/breakpoints.scss';
 @import '@/assets/pagesCommonStyle.scss';
 
+.page {
+    min-height: 50vh;
+}
+
 .content {
     display: flex;
     flex-direction: column;

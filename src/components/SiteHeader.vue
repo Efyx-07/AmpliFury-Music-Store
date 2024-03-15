@@ -30,7 +30,7 @@ import BurgerMenuIcon from '@/sub-components/BurgerMenuIcon.vue';
 
 header {
     width: 100%;
-    height: 6rem;
+    height: 5rem;
     background: $whiteColor;
     border-bottom: solid 1px $blackColor; 
     position: sticky;
@@ -61,7 +61,15 @@ header {
     }
 }
 
+@media (min-width: $breakpointLargeMobile) {
+
+    header {
+        height: 6rem;
+    }
+}
+
 @media (min-width: $breakpointLargeTablet) {
+
     header .content {
 
         .siteNav {

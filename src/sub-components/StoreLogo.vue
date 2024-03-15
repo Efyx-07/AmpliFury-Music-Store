@@ -6,8 +6,10 @@
 
 <style lang="scss" scoped>
 
+@import '@/assets/breakpoints.scss';
+
 .logo-container {
-    height: 4rem;
+    height: 3.5rem;
     display: inline-block;
     position: relative;
     overflow: hidden;
@@ -17,6 +19,13 @@
         display: block;
         position: relative;
         object-fit: cover;
+    }
+}
+
+@media (min-width: $breakpointLargeMobile) {
+    
+    .logo-container {
+        height: 4rem;
     }
 }
 

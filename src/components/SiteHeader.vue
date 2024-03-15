@@ -15,7 +15,6 @@ import BurgerMenuIcon from '@/sub-components/BurgerMenuIcon.vue';
             <SiteNav class="siteNav"/>
             <div class="icons-container">
                 <WishListIcon />
-                <WishListIcon />
                 <CartIcon />
             </div>
             <BurgerMenuIcon class="burgerMenuIcon"/>

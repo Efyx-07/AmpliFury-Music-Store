@@ -16,6 +16,12 @@ const closeBurgerMenu = (): void => {
 <template>
     <div class="navItems-container">
         <div class="navItem-container">
+            <router-link to="/" class="navItem" @click="closeBurgerMenu">
+                <p>Home</p>
+                <div class="underline" :class="{ 'active': $route.path === '/' }"></div>
+            </router-link>
+        </div>
+        <div class="navItem-container">
             <router-link to="/catalogue" class="navItem" @click="closeBurgerMenu">
                 <p>All products</p>
                 <div class="underline" :class="{ 'active': $route.path === '/catalogue' }"></div>

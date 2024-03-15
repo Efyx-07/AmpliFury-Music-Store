@@ -43,15 +43,15 @@ footer {
         position: relative;
         width: 100%;
         max-width: 75rem;
-        padding: 4.5rem 1rem;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 3rem;
+        padding: 3rem 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
 
         .toTop-button {
             position: absolute;
             bottom: -3rem;
-            right: 0;
+            right: 1rem;
         }
     }
 
@@ -73,6 +73,15 @@ footer {
                 font-size: 1.25rem;
             }
         }
+    }
+}
+
+@media (min-width: $breakpointSmallTablet) {
+    footer .content {
+        padding: 4.5rem 1rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr; 
+        gap: 3rem;
     }
 }
 

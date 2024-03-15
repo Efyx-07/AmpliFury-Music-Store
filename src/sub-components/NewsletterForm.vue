@@ -7,11 +7,9 @@ import ReusablePrimaryButton from './ReusablePrimaryButton.vue';
 <template>
     <div class="footer-section">
         <h1>Newsletter</h1>
-        <form action="" class="content">
+        <form class="content">
             <input type="mail" id="email-input" name="email" placeholder= "Enter your email address">
-            <div class="button-container">
-                <ReusablePrimaryButton>Subscribe</ReusablePrimaryButton>
-            </div>
+            <ReusablePrimaryButton class="button">Subscribe</ReusablePrimaryButton>
         </form>
     </div>
 </template>
@@ -27,11 +25,12 @@ import ReusablePrimaryButton from './ReusablePrimaryButton.vue';
 
     .content {
         display: flex;
+        flex-direction: column;
         align-items: center;
         gap: .5rem;
 
         input {
-            width: 20rem;
+            width: 100%;
             height: 2.75rem;
             padding-left: 1rem;
             outline: none;
@@ -40,6 +39,10 @@ import ReusablePrimaryButton from './ReusablePrimaryButton.vue';
             &:focus {
                 border: solid 1px $accent1;
             }
+        }
+
+        .button {
+            width: 100%;
         }
     }
 }

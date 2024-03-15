@@ -37,7 +37,7 @@ const icons: socialIcon[] = [
     <div class="footer-section">
         <h1>Contact us</h1>
         <div class="content">
-            <ReusablePrimaryButton>Send us an email</ReusablePrimaryButton>
+            <ReusablePrimaryButton class="button">Send us an email</ReusablePrimaryButton>
             <div class="icons-container">
                 <Icon v-for="icon in icons" :key="icon.social" :icon="icon.iconName" class="icon"/>
             </div>
@@ -56,16 +56,21 @@ const icons: socialIcon[] = [
 
     .content {
         display: flex;
+        flex-direction: column;
         align-items: center;
         gap: .5rem;
 
+        .button {
+            width: 100%;
+        }
+
         .icons-container {
+            width: 100%;
             height: 2.75rem;
-            padding: 0 1rem;
             display: flex;
+            justify-content: space-around;
             align-items: center;
             border: solid 1px $blackColor;
-            gap: 1rem;
 
             .icon {
                 font-size: 1.5rem;

@@ -74,6 +74,7 @@ const icons: socialIcon[] = [
 
             .icon {
                 font-size: 1.5rem;
+                cursor: pointer;
 
                 &:hover {
                     color: $accent1;

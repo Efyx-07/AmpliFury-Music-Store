@@ -58,12 +58,12 @@ onMounted(() => {
 
     header {
         width: 100%;
-        height: 6rem;
+        height: 5rem;
         background: $whiteColor;
         display: flex; 
         align-items: center;
         justify-content: space-between;
-        padding: 0 2rem;
+        padding: 0 1rem;
 
         .closeIcon {
             font-size: 1.75rem;
@@ -80,6 +80,14 @@ onMounted(() => {
         height: 100%;
         display: flex;
         padding: 2rem;
+    }
+}
+
+@media (min-width: $breakpointLargeMobile) {
+
+    .burger-menu  header {
+        height: 6rem;
+        padding: 0 2rem;
     }
 }
 

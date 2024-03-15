@@ -66,6 +66,7 @@ const clearCart = (): void => {
 <style lang="scss" scoped>
 
 @import '@/assets/colors.scss';
+@import '@/assets/breakpoints.scss';
 
 .hiddenShoppingCart {
     transform: translateX(100%);
@@ -73,7 +74,6 @@ const clearCart = (): void => {
 
 .shopping-cart {
     background: $whiteColor;
-    border-left: solid 1px $blackColor; 
     height: 100vh;
     width: 100%;
     max-width: 31rem;
@@ -85,13 +85,13 @@ const clearCart = (): void => {
 
     header {
         width: 100%;
-        height: 6rem;
+        height: 4rem;
         background: $whiteColor;
         border-bottom: solid 1px $blackColor;
         display: flex; 
         align-items: center;
         justify-content: space-between;
-        padding: 0 2rem;
+        padding: 0 1rem;
 
         .closeIcon {
             font-size: 1.75rem;
@@ -105,8 +105,8 @@ const clearCart = (): void => {
 
     .cartItems-container {
         width: 100%;
-        height: calc(100vh - 17rem); // height - taille du footer + header
-        padding: 2rem;
+        height: calc(100vh - 15rem); // height - taille du footer + header
+        padding: 1rem;
         display: flex;
         flex-direction: column;
         gap: 1rem;
@@ -121,6 +121,23 @@ const clearCart = (): void => {
         .button {
             align-self: flex-end;
             margin-top: 1rem;
+        }
+    }
+}
+
+@media (min-width: $breakpointLargeMobile) {
+
+    .shopping-cart {
+        border-left: solid 1px $blackColor;
+
+        header {
+            height: 6rem;
+            padding: 0 2rem;
+        }
+
+        .cartItems-container {
+            height: calc(100vh - 17rem); // height - taille du footer + header
+            padding: 2rem;
         }
     }
 }

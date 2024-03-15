@@ -27,8 +27,8 @@ const closeShoppingCart = (): void => catalogueStore.closeShoppingCart();
             <h1>{{ totalPrice }} {{ currency }}</h1>
         </div>
         <div class="buttons-container">
-            <ReusableSecondaryButton @click="closeShoppingCart">Keep browsing</ReusableSecondaryButton>
-            <ReusablePrimaryButton>Go to checkout</ReusablePrimaryButton>
+            <ReusableSecondaryButton @click="closeShoppingCart" class="button">Keep browsing</ReusableSecondaryButton>
+            <ReusablePrimaryButton class="button">Go to checkout</ReusablePrimaryButton>
         </div>
     </div>
 </template>
@@ -36,6 +36,7 @@ const closeShoppingCart = (): void => catalogueStore.closeShoppingCart();
 <style lang="scss" scoped>
 
 @import '@/assets/colors.scss';
+@import '@/assets/breakpoints.scss';
 
 .shoppingCart-footer {
     background: $whiteColor;
@@ -43,16 +44,18 @@ const closeShoppingCart = (): void => catalogueStore.closeShoppingCart();
     width: 100%;
     max-width: 32rem;
     height: 11rem;
-    padding: 2rem;
+    padding: 1rem;
     position: fixed;
     bottom: 0;
     z-index: 99;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
 
     .price-container {
         display: flex;
-        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
 
         p {
             font-size: 1.5rem;
@@ -64,6 +67,25 @@ const closeShoppingCart = (): void => catalogueStore.closeShoppingCart();
         display: flex;
         flex-direction: column;
         gap: .5rem;
+
+        .button {
+            width: 100%;
+            min-width: 12rem;
+        }
+    }
+}
+
+@media (min-width: $breakpointLargeMobile) {
+
+    .shoppingCart-footer {
+        padding: 2rem;
+        flex-direction: unset;
+
+        .price-container {
+            align-items: unset;
+            gap: unset;
+            flex-direction: column;
+        }
     }
 }
 

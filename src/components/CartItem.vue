@@ -49,6 +49,7 @@ const toggleFromShoppingCartToWishList = (item: Product) => {
 
 @import '@/assets/colors.scss';
 @import '@/assets/cardImageContainer.scss';
+@import '@/assets/breakpoints.scss';
 
 .cartItem {
     width: 100%;
@@ -58,8 +59,12 @@ const toggleFromShoppingCartToWishList = (item: Product) => {
     gap: 1rem;
 
     .image-container {
-        width: 10rem;
+        min-height: 9rem;
         cursor: unset;
+
+        img {
+            height: 100%;
+        }
     }
 
     .datas-container {
@@ -73,12 +78,6 @@ const toggleFromShoppingCartToWishList = (item: Product) => {
         .item-price {
             font-size: 1.5rem;
             font-weight: 600;
-        }
-
-        .counter {
-            position: absolute;
-            bottom: 0;
-            left: 0;
         }
 
         .icons-container {
@@ -96,6 +95,28 @@ const toggleFromShoppingCartToWishList = (item: Product) => {
                     color: $accent1;
                 }
             }
+        }
+    }
+}
+
+@media (min-width: $breakpointLargeMobile) {
+
+    .cartItem {
+
+        .image-container {
+            min-height: unset;
+            width: 10rem;
+            cursor: unset;
+
+            img {
+                height: unset;
+            }
+        }
+
+        .datas-container .counter {
+            position: absolute;
+            bottom: 0;
+            left: 0;
         }
     }
 }

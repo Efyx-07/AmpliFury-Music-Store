@@ -12,11 +12,11 @@ const companyName: string = useGlobalDataStore().companyName;
 <template>
     <div class="page">
         <div class="section-container">
-            <div class="section-heading head-section">
+            <!-- <div class="section-heading head-section">
                 <div class="head-content">
                     <h1>Right now at {{ companyName }} !</h1>
                 </div>
-            </div>
+            </div> -->
             <div class="content">
                 <SectionHeading />
             </div>
@@ -69,7 +69,7 @@ const companyName: string = useGlobalDataStore().companyName;
 
             .head-content {
                 width: 100%;
-                max-width: 90rem;
+                max-width: 75rem;
                 padding: .5rem 1rem;
                 display: flex;
                 justify-content: space-between;
@@ -87,9 +87,9 @@ const companyName: string = useGlobalDataStore().companyName;
         }
 
         .content {
-            padding: 3rem 1rem 3rem 1rem;
+            //padding: 3rem 1rem 3rem 1rem;
             width: 100%;
-            max-width: 90rem;
+            //max-width: 75rem;
         }
     }
 }

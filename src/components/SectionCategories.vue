@@ -21,21 +21,26 @@ const categories: Category[] = catalogueStore.categories;
 </template>
 
 <style lang="scss" scoped>
-
 @import '@/assets/cardImageContainer.scss';
 
 .categoryCards-container {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     gap: 1rem;
 
     .category-card {
         width: 100%;
+        height: 25rem;
         display: inline-block;
 
         .image-container {
+            height: 100%;
             display: block;
+
+            img {
+                height: 100%;
+            }
         }
     }
 }

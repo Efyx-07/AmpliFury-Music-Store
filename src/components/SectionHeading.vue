@@ -1,7 +1,43 @@
 <script setup lang="ts">
 
+import { useCatalogueStore } from '@/stores/CatalogueStore';
+import type { Product } from '@/types/CatalogueTypes';
+import { ref, onUnmounted, watch } from 'vue';
+import { useGlobalDataStore } from '@/stores/GlobalDataStore';
+import { useRouter } from 'vue-router';
 import ReusablePrimaryButton from '@/sub-components/ReusablePrimaryButton.vue';
 import ReusableSecondaryButton from '@/sub-components/ReusableSecondaryButton.vue';
+
+const products: Product[] = useCatalogueStore().getAllProducts();
+
+const { currency } = useGlobalDataStore();
+
+const productToDisplay = ref<Product>(products[Math.floor(Math.random() * products.length)]);
+
+const changeProduct = (): void => {
+    productToDisplay.value = products[Math.floor(Math.random() * products.length)];
+};
+
+const intervalId: number = setInterval(changeProduct, 4000);
+
+onUnmounted(() => {
+    clearInterval(intervalId);
+});
+
+const productToDisplayId = ref<number>(productToDisplay.value.id);
+
+// navigue vers la page du produit selectionné
+const router = useRouter();
+const navigateToProduct = () => {
+    router.push({
+        name: 'ProductDetail',
+        params: { productId: productToDisplayId.value }
+    });
+};
+
+watch(productToDisplay, (newVal) => {
+    productToDisplayId.value = newVal.id;
+});
 
 </script>
 
@@ -12,15 +48,15 @@ import ReusableSecondaryButton from '@/sub-components/ReusableSecondaryButton.vu
                 <div class="text-container">
                     <h1>AmpliFury</h1>
                     <p class="subTitle">Find your next sound here</p>
-                    <p class="item-name">>> Diamond Manchester at <span>3299.00 $</span></p>
+                    <p class="item-name">>> {{ productToDisplay.brand }} {{ productToDisplay.model }} at <span>{{ productToDisplay.price }} {{ currency }}</span></p>
                 </div>
                 <div class="buttons-container">
-                    <ReusablePrimaryButton>View product</ReusablePrimaryButton>
+                    <ReusablePrimaryButton @click="navigateToProduct">View product</ReusablePrimaryButton>
                     <ReusableSecondaryButton>Start browsing</ReusableSecondaryButton>  
                 </div>
             </div>
             <div class="image-container">
-                <img src="/images/catalogue/products/drums/diamond manchester.jpg">
+                <img :src="`/images` + productToDisplay.image_source" alt="productToDisplay.image_alt">
             </div>
         </div>
     </div>
@@ -90,26 +126,11 @@ import ReusableSecondaryButton from '@/sub-components/ReusableSecondaryButton.vu
                 position: relative;
                 object-fit: cover;
                 border-radius: inherit;
-                animation: pulse 2s infinite;
             }
         }
     }
 
     
-}
-
-@keyframes pulse {
-	0% {
-		transform: scale(1);
-	}
-
-	50% {
-		transform: scale(1.025);
-	}
-
-	100% {
-		transform: scale(1) rotate;
-	}
 }
 
 </style>

@@ -39,7 +39,7 @@ const removeFromWishList = (): void => {
 
 // navigue vers la page du produit selectionné
 const router = useRouter();
-const navigateToProduct = () => {
+const navigateToProduct = (): void => {
     router.push({
         name: 'ProductDetail',
         params: { productId: product.id }
@@ -52,7 +52,7 @@ const addToShoppingCart = (): void => {
 };
 
 // utilise méthode du store pour ouvrir shoppingCart
-const toggleShoppingCart = () => catalogueStore.toggleShoppingCart();
+const toggleShoppingCart = (): void => catalogueStore.toggleShoppingCart();
 
 </script>
 

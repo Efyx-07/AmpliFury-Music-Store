@@ -12,31 +12,37 @@ const products: Product[] = useCatalogueStore().getAllProducts();
 
 const { currency } = useGlobalDataStore();
 
+// choisit au hasard le produit à afficher dans le tableau de produits et stocke en ref
 const productToDisplay = ref<Product>(products[Math.floor(Math.random() * products.length)]);
 
+// change au hasard le produit à afficher
 const changeProduct = (): void => {
     productToDisplay.value = products[Math.floor(Math.random() * products.length)];
 };
 
+// définit un intervalle pour le changement de produit à afficher
 const intervalId: number = setInterval(changeProduct, 4000);
 
+// nettoie l'intervalle à la destruction du composant
 onUnmounted(() => {
     clearInterval(intervalId);
 });
 
-const productToDisplayId = ref<number>(productToDisplay.value.id);
+// extrait et stocke en ref l'id du produit affiché
+const producDisplayedId = ref<number>(productToDisplay.value.id);
 
 // navigue vers la page du produit selectionné
 const router = useRouter();
-const navigateToProduct = () => {
+const navigateToProduct = (): void => {
     router.push({
         name: 'ProductDetail',
-        params: { productId: productToDisplayId.value }
+        params: { productId: producDisplayedId.value }
     });
 };
 
+// surveille les changements de l'id du produit affiché pour rendre réactive la route vers la page du produit affiché
 watch(productToDisplay, (newVal) => {
-    productToDisplayId.value = newVal.id;
+    producDisplayedId.value = newVal.id;
 });
 
 </script>
@@ -51,11 +57,13 @@ watch(productToDisplay, (newVal) => {
                     <p class="item-name">>> {{ productToDisplay.brand }} {{ productToDisplay.model }} at <span>{{ productToDisplay.price }} {{ currency }}</span></p>
                 </div>
                 <div class="buttons-container">
-                    <ReusablePrimaryButton @click="navigateToProduct">View product</ReusablePrimaryButton>
-                    <ReusableSecondaryButton>Start browsing</ReusableSecondaryButton>  
+                    <ReusablePrimaryButton @click="navigateToProduct" class="button">View product</ReusablePrimaryButton>
+                    <router-link to="/catalogue" class="buttonLink">
+                        <ReusableSecondaryButton class="button">Start browsing</ReusableSecondaryButton>
+                    </router-link>  
                 </div>
             </div>
-            <div class="image-container">
+            <div class="image-container" @click="navigateToProduct">
                 <img :src="`/images` + productToDisplay.image_source" alt="productToDisplay.image_alt">
             </div>
         </div>
@@ -65,6 +73,7 @@ watch(productToDisplay, (newVal) => {
 <style lang="scss" scoped>
 
 @import '@/assets/colors.scss';
+@import '@/assets/cardImageContainer.scss';
 
 .head-banner {
     background: $accent1;
@@ -110,22 +119,25 @@ watch(productToDisplay, (newVal) => {
             .buttons-container {
                 display: flex;
                 gap: 1rem;
+
+                .button {
+                    &:hover {
+                        border: solid 1px $blackColor;
+                    }
+                }
+
+                .buttonLink {
+                    text-decoration: none;
+                }
             }
         }
 
         .image-container {
-            width: 100%;
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
             border-radius: 100%;
 
             img {
-                width: 100%;
-                display: block;
-                position: relative;
-                object-fit: cover;
                 border-radius: inherit;
+                border: solid 1px $blackColor;
             }
         }
     }

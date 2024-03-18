@@ -81,7 +81,7 @@ watch(productToDisplay, (newVal) => {
                     </div>
                 </div>
             </div>
-            
+
             <!-- visible sur version mobile -->
             <div class="buttons-container-mobile">
                 <ReusablePrimaryButton @click="navigateToProduct" class="button">View product</ReusablePrimaryButton>
@@ -126,7 +126,7 @@ watch(productToDisplay, (newVal) => {
                 gap: 1rem;
 
                 h1 {
-                    font-size: clamp(4rem, 15vw, 10rem);
+                    font-size: clamp(4rem, 17vw, 10rem);
                     font-weight: 700;
                     line-height: .75;
                     white-space: nowrap;
@@ -154,6 +154,7 @@ watch(productToDisplay, (newVal) => {
 
         .image-container {
             border-radius: 100%;
+            max-width: 25rem;
 
             img {
                 border-radius: inherit;

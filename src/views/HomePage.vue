@@ -1,11 +1,8 @@
 <script setup lang="ts">
 
 import SectionHeading from '@/components/SectionHeading.vue';
-import SectionCategories from '@/components/SectionCategories.vue';
+//import SectionCategories from '@/components/SectionCategories.vue';
 import SectionCommitments from '@/components/SectionCommitments.vue';
-//import { useGlobalDataStore } from '@/stores/GlobalDataStore';
-
-//const companyName: string = useGlobalDataStore().companyName;
 
 </script>
 
@@ -25,17 +22,15 @@ import SectionCommitments from '@/components/SectionCommitments.vue';
             <div class="content">
                 <SectionCategories />
             </div>
-        </div>
+        </div> -->
         <div class="section-container">
             <div class="section-heading">
-                <div class="head-content">
-                    <h1>Order, get, enjoy</h1>
-                </div>
+                <h1>Order, get, enjoy</h1>>
             </div>
             <div class="content">
                 <SectionCommitments />
             </div>
-        </div> -->
+        </div>
     </div>
 </template>
 
@@ -60,32 +55,24 @@ import SectionCommitments from '@/components/SectionCommitments.vue';
         .section-heading {
             width: 100%;
             display: flex;
-            justify-content: center;
+            max-width: 75rem;
 
-            .head-content {
-                width: 100%;
-                max-width: 75rem;
-                padding: .5rem 1rem;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-
-                h1 {
-                    font-size: clamp(3rem, 7vw, 5rem);
-                    line-height: .75;
-                }
+            h1 {
+                font-size: clamp(3rem, 7vw, 5rem);
+                line-height: .75;
             }
         }
 
-        .head-section {
-            border-bottom: solid 1px $blackColor;
-        }
-
         .content {
-            //padding: 3rem 1rem 3rem 1rem;
             width: 100%;
-            //max-width: 75rem;
         }
+    }
+}
+
+@media (min-width: $breakpointLargeDesktop) {
+
+    .page .section-container .section-heading   {
+        max-width: 90rem;
     }
 }
 

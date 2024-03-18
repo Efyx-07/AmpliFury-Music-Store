@@ -41,9 +41,11 @@ const commitments: Commitment[] = [
 
 .commitments-container {
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 3rem 1rem;
+
 
     .commitmentCard {
         width: 100%;

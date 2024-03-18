@@ -28,7 +28,9 @@ import SectionCommitments from '@/components/SectionCommitments.vue';
                 <h1>Order, get, enjoy</h1>>
             </div>
             <div class="content">
-                <SectionCommitments />
+                <div class="section-content">
+                    <SectionCommitments />
+                </div>
             </div>
         </div>
     </div>
@@ -53,6 +55,7 @@ import SectionCommitments from '@/components/SectionCommitments.vue';
         align-items: center;
 
         .section-heading {
+            padding: 0 1rem;
             width: 100%;
             display: flex;
             max-width: 75rem;
@@ -65,6 +68,12 @@ import SectionCommitments from '@/components/SectionCommitments.vue';
 
         .content {
             width: 100%;
+
+            .section-content {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+            }
         }
     }
 }

@@ -38,14 +38,15 @@ const commitments: Commitment[] = [
 <style lang="scss" scoped>
 
 @import '@/assets/colors.scss';
+@import '@/assets/breakpoints.scss';
 
 .commitments-container {
     width: 100%;
+    max-width: 75rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
     padding: 3rem 1rem;
-
 
     .commitmentCard {
         width: 100%;
@@ -70,6 +71,21 @@ const commitments: Commitment[] = [
         .button {
             width: 100%;
         }
+    }
+}
+
+@media (min-width: $breakpointTablet) {
+
+    .commitments-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media (min-width: $breakpointLargeDesktop) {
+    .commitments-container {
+        max-width: 90rem;
+        gap: 3rem;
     }
 }
 

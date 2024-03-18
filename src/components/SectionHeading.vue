@@ -126,14 +126,14 @@ watch(productToDisplay, (newVal) => {
                 gap: 1rem;
 
                 h1 {
-                    font-size: clamp(4rem, 17vw, 10rem);
+                    font-size: clamp(4rem, 17vw, 8rem);
                     font-weight: 700;
                     line-height: .75;
                     white-space: nowrap;
                 }
 
                 .subTitle {
-                    font-size: clamp(2rem, 7.5vw, 5rem);
+                    font-size: clamp(2rem, 7.5vw, 4rem);
                     font-weight: 200;
                 }
 
@@ -163,6 +163,7 @@ watch(productToDisplay, (newVal) => {
         }
 
         .buttons-container-mobile {
+            width: 100%;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -227,13 +228,13 @@ watch(productToDisplay, (newVal) => {
     }
 }
 
-@media (min-width: $breakpointInterDesktop) {
+@media (min-width: $breakpointDesktop) {
 
     .head-banner {
 
         .content {
             display: grid;
-            grid-template-columns: 2fr 1fr;
+            grid-template-columns: 1.5fr 1fr;
 
             .imageAndButtons-container-tablet {
                 display: none;
@@ -264,6 +265,10 @@ watch(productToDisplay, (newVal) => {
             .image-container-mobile-desktop {
                 display: block;
             }
+
+            .image-container {
+                max-width: 35rem;
+            }
         }   
     }
 }
@@ -271,6 +276,17 @@ watch(productToDisplay, (newVal) => {
 @media (min-width: $breakpointLargeDesktop) {
     .head-banner .content {
         max-width: 90rem;
+
+        .infos-container .text-container {
+
+            h1 {
+                font-size: 10rem;
+            }
+
+            .subTitle {
+                font-size: 5rem;
+            }
+        }
     }
 }
 

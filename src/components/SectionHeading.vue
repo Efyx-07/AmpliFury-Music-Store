@@ -56,15 +56,38 @@ watch(productToDisplay, (newVal) => {
                     <p class="subTitle">Find your next sound here</p>
                     <p class="item-name">>> {{ productToDisplay.brand }} {{ productToDisplay.model }} at <span>{{ productToDisplay.price }} {{ currency }}</span></p>
                 </div>
-                <div class="buttons-container">
+                <div class="buttons-container-desktop"> 
                     <ReusablePrimaryButton @click="navigateToProduct" class="button">View product</ReusablePrimaryButton>
                     <router-link to="/catalogue" class="buttonLink">
                         <ReusableSecondaryButton class="button">Start browsing</ReusableSecondaryButton>
                     </router-link>  
                 </div>
             </div>
-            <div class="image-container" @click="navigateToProduct">
+            <div class="image-container image-container-mobile-desktop" @click="navigateToProduct">
                 <img :src="`/images` + productToDisplay.image_source" alt="productToDisplay.image_alt">
+            </div>
+
+            <!-- visible sur version tablet -->
+            <div class="imageAndButtons-container-tablet">
+                <div class="image-container image-container-tablet" @click="navigateToProduct">
+                    <img :src="`/images` + productToDisplay.image_source" alt="productToDisplay.image_alt">
+                </div>
+                <div class="buttons-container-tablet-wrapper">
+                    <div class="buttons-container-tablet">
+                        <ReusablePrimaryButton @click="navigateToProduct" class="button">View product</ReusablePrimaryButton>
+                        <router-link to="/catalogue" class="buttonLink">
+                            <ReusableSecondaryButton class="button">Start browsing</ReusableSecondaryButton>
+                        </router-link>  
+                    </div>
+                </div>
+            </div>
+            
+            <!-- visible sur version mobile -->
+            <div class="buttons-container-mobile">
+                <ReusablePrimaryButton @click="navigateToProduct" class="button">View product</ReusablePrimaryButton>
+                <router-link to="/catalogue" class="buttonLink">
+                    <ReusableSecondaryButton class="button">Start browsing</ReusableSecondaryButton>
+                </router-link>  
             </div>
         </div>
     </div>
@@ -74,6 +97,7 @@ watch(productToDisplay, (newVal) => {
 
 @import '@/assets/colors.scss';
 @import '@/assets/cardImageContainer.scss';
+@import '@/assets/breakpoints.scss';
 
 .head-banner {
     background: $accent1;
@@ -84,9 +108,11 @@ watch(productToDisplay, (newVal) => {
     .content {
         width: 100%;
         max-width: 75rem;
-        display: grid;
-        grid-template-columns: 1.5fr 1fr;
         padding: 3rem 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
 
         .infos-container {
             display: flex;
@@ -96,40 +122,34 @@ watch(productToDisplay, (newVal) => {
             .text-container {
                 display: flex;
                 flex-direction: column;
+                align-items: center;
                 gap: 1rem;
 
                 h1 {
-                    font-size: 10rem;
+                    font-size: clamp(4rem, 15vw, 10rem);
                     font-weight: 700;
                     line-height: .75;
                     white-space: nowrap;
                 }
 
                 .subTitle {
-                    font-size: 5rem;
+                    font-size: clamp(2rem, 7.5vw, 5rem);
                     font-weight: 200;
                 }
 
                 .item-name {
                     font-family: "Poppins", sans-serif;
-                    font-size: 1.25rem;
+                    font-size: clamp(.75rem, 3.75vw, 1.25rem);
                 }
             }
 
-            .buttons-container {
-                display: flex;
-                gap: 1rem;
-
-                .button {
-                    &:hover {
-                        border: solid 1px $blackColor;
-                    }
-                }
-
-                .buttonLink {
-                    text-decoration: none;
-                }
+            .buttons-container-desktop {
+                display: none;
             }
+        }
+
+        .imageAndButtons-container-tablet {
+            display: none;
         }
 
         .image-container {
@@ -140,9 +160,117 @@ watch(productToDisplay, (newVal) => {
                 border: solid 1px $blackColor;
             }
         }
-    }
 
-    
+        .buttons-container-mobile {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: .5rem;
+
+            .button {
+                width: 100%;
+
+                &:hover {
+                    border: solid 1px $blackColor;
+                }
+            }
+
+            .buttonLink {
+                text-decoration: none;
+                width: 100%;
+            }
+        }
+    }   
+}
+
+@media (min-width: $breakpointTablet) {
+    .head-banner .content {
+        .image-container-mobile-desktop, .buttons-container-mobile {
+            display: none;
+        }
+
+        .imageAndButtons-container-tablet {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+
+            .image-container-tablet {
+                max-width: 25rem;
+            }
+
+            .buttons-container-tablet-wrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .buttons-container-tablet {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    align-items: center;
+                    gap: .5rem;
+
+                    .button {
+                        max-height: 2.5rem;
+                        &:hover {
+                            border: solid 1px $blackColor;
+                        }
+                    }
+
+                    .buttonLink {
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: $breakpointInterDesktop) {
+
+    .head-banner {
+
+        .content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+
+            .imageAndButtons-container-tablet {
+                display: none;
+            }
+
+            .infos-container {
+
+                .text-container {
+                    align-items: flex-start;
+                }
+
+                .buttons-container-desktop {
+                    display: flex;
+                    gap: 1rem;
+
+                    .button {
+                        &:hover {
+                            border: solid 1px $blackColor;
+                        }
+                    }
+
+                    .buttonLink {
+                        text-decoration: none;
+                    }
+                }
+            }
+
+            .image-container-mobile-desktop {
+                display: block;
+            }
+        }   
+    }
+}
+
+@media (min-width: $breakpointLargeDesktop) {
+    .head-banner .content {
+        max-width: 90rem;
+    }
 }
 
 </style>

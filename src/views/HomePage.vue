@@ -3,25 +3,20 @@
 import SectionHeading from '@/components/SectionHeading.vue';
 import SectionCategories from '@/components/SectionCategories.vue';
 import SectionCommitments from '@/components/SectionCommitments.vue';
-import { useGlobalDataStore } from '@/stores/GlobalDataStore';
+//import { useGlobalDataStore } from '@/stores/GlobalDataStore';
 
-const companyName: string = useGlobalDataStore().companyName;
+//const companyName: string = useGlobalDataStore().companyName;
 
 </script>
 
 <template>
     <div class="page">
         <div class="section-container">
-            <!-- <div class="section-heading head-section">
-                <div class="head-content">
-                    <h1>Right now at {{ companyName }} !</h1>
-                </div>
-            </div> -->
             <div class="content">
                 <SectionHeading />
             </div>
         </div>
-        <div class="section-container">
+        <!-- <div class="section-container">
             <div class="section-heading">
                 <div class="head-content">
                     <h1>Our categories</h1>
@@ -40,7 +35,7 @@ const companyName: string = useGlobalDataStore().companyName;
             <div class="content">
                 <SectionCommitments />
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 

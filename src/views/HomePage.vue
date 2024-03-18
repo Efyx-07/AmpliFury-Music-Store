@@ -25,7 +25,7 @@ import SectionCommitments from '@/components/SectionCommitments.vue';
         </div> -->
         <div class="section-container">
             <div class="section-heading">
-                <h1>Order, get, enjoy</h1>>
+                <h1>Order, get, enjoy</h1>
             </div>
             <div class="content">
                 <div class="section-content">

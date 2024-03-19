@@ -21,7 +21,12 @@ import ReusablePrimaryButton from './ReusablePrimaryButton.vue';
 .footer-section {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 3rem;
+
+    h1 {
+        font-size: clamp(3rem, 7vw, 5rem);
+        line-height: .75;
+    }
 
     .content {
         display: flex;

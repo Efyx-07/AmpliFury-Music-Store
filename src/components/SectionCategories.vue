@@ -14,9 +14,9 @@ const scrollLeft = (): void => {
     if (sliderRef.value) {
         const cardElement = sliderRef.value.querySelector('.category-card') as HTMLElement | null;
         if (cardElement) {
-            const cardWidth = cardElement.offsetWidth;
+            const cardWidth = cardElement.offsetWidth + 32;
             sliderRef.value.scrollBy({
-                left: -cardWidth - 32,
+                left: -cardWidth,
                 behavior: 'smooth'
             });
         }
@@ -27,9 +27,9 @@ const scrollRight = (): void => {
     if (sliderRef.value) {
         const cardElement = sliderRef.value.querySelector('.category-card') as HTMLElement | null;
         if (cardElement) {
-            const cardWidth = cardElement.offsetWidth;
+            const cardWidth = cardElement.offsetWidth + 32;
             sliderRef.value.scrollBy({
-                left: cardWidth + 32,
+                left: cardWidth,
                 behavior: 'smooth'
             });
         }

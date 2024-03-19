@@ -3,6 +3,7 @@
 import SectionHeading from '@/components/SectionHeading.vue';
 import SectionCategories from '@/components/SectionCategories.vue';
 import SectionCommitments from '@/components/SectionCommitments.vue';
+import SectionLastArrivals from '@/components/SectionLastArrivals.vue';
 import ScrollingButton from '@/sub-components/ScrollingButton.vue';
 
 </script>
@@ -35,6 +36,16 @@ import ScrollingButton from '@/sub-components/ScrollingButton.vue';
                 </div>
             </div>
         </div>
+        <div class="section-container">
+            <div class="section-heading">
+                <h1>Last arrivals</h1>
+            </div>
+            <div class="content">
+                <div class="section-content">
+                    <SectionLastArrivals />
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -48,13 +59,14 @@ import ScrollingButton from '@/sub-components/ScrollingButton.vue';
     flex-direction: column;
     align-items: center;
     gap: 3rem;
-    padding-bottom: 6rem;
+    padding-bottom: 3rem;
 
     .section-container {
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding-bottom: 3rem;
 
         .section-heading {
             width: 100%;

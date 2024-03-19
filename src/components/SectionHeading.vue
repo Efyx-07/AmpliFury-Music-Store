@@ -49,6 +49,7 @@ watch(productToDisplay, (newVal) => {
 
 <template>
     <div class="head-banner">
+        <img src="/svg/wave.svg" class="wave">
         <div class="content">
             <div class="infos-container">
                 <div class="text-container">
@@ -101,9 +102,17 @@ watch(productToDisplay, (newVal) => {
 
 .head-banner {
     background: $accent1;
-    border-bottom: solid 1px $blackColor; 
     display: flex;
     justify-content: center;
+    position: relative;
+    padding-bottom: 3rem;
+
+    .wave {
+        position: absolute;
+        bottom: 0;
+        z-index: 0;
+        width: 100%;
+    }
 
     .content {
         width: 100%;
@@ -113,6 +122,7 @@ watch(productToDisplay, (newVal) => {
         flex-direction: column;
         align-items: center;
         gap: 2rem;
+        z-index: 1;
 
         .infos-container {
             display: flex;
@@ -266,7 +276,7 @@ watch(productToDisplay, (newVal) => {
             }
 
             .image-container {
-                max-width: 35rem;
+                max-width: 30rem;
             }
         }   
     }

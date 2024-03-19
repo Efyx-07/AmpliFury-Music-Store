@@ -49,7 +49,7 @@ watch(productToDisplay, (newVal) => {
 
 <template>
     <div class="head-banner">
-        <img src="/svg/wave.svg" class="wave">
+        <img src="/svg/waveWhite.svg" class="wave">
         <div class="content">
             <div class="infos-container">
                 <div class="text-container">

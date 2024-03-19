@@ -13,14 +13,17 @@ const currentYear: number = new Date().getFullYear();
 
 <template>
     <footer>
-        <div class="content">
-            <NewsletterForm />
-            <FooterContactSection />
-            <ToTopButton class="toTop-button"/>
+        <div class="high-content">
+            <div class="high-content-container">
+                <NewsletterForm />
+                <FooterContactSection />
+            </div>
+            <img src="/svg/waveBlack.svg" class="wave">
         </div>
         <div class="bottom-content">
             <div class="content-container">
                 <p>© {{ currentYear }} {{ companyName }}</p>
+                <ToTopButton class="toTop-button"/>
             </div>
         </div>
     </footer>
@@ -38,22 +41,31 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
-    .content {
-        position: relative;
-        width: 100%;
-        max-width: 75rem;
-        padding: 3rem 1rem;
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
 
-        .toTop-button {
+    .high-content {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        position: relative;
+
+        .wave {
             position: absolute;
-            bottom: -2rem;
-            right: 1rem;
+            bottom: 0;
+            z-index: 0;
+            width: 100%;
+        }
+
+        .high-content-container {
+            width: 100%;
+            max-width: 75rem;
+            padding: 3rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            z-index: 1;
         }
     }
+    
 
     .bottom-content {
         width: 100%;
@@ -68,24 +80,28 @@ footer {
             max-width: 75rem;
             display: flex;
             justify-content: center;
+            position: relative;
 
             p {
                 font-size: 1.25rem;
+            }
+
+            .toTop-button {
+                position: absolute;
+                bottom: 0;
+                right: 1rem;
+                color: $blackColor;
             }
         }
     }
 }
 
 @media (min-width: $breakpointSmallTablet) {
-    footer .content {
+    footer .high-content .high-content-container {
         padding: 4.5rem 1rem;
         display: grid;
         grid-template-columns: 1fr 1fr; 
         gap: 3rem;
-
-        .toTop-button {
-            bottom: -3rem;
-        }
     }
 
     footer .bottom-content {
@@ -95,7 +111,7 @@ footer {
 
 @media (min-width: $breakpointLargeDesktop) {
 
-    footer .content, 
+    footer .high-content .high-content-container, 
     footer .bottom-content .content-container {
         max-width: 90rem;
     }

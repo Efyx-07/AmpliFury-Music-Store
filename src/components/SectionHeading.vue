@@ -158,7 +158,6 @@ watch(productToDisplay, (newVal) => {
 
             img {
                 border-radius: inherit;
-                border: solid 1px $blackColor;
             }
         }
 

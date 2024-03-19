@@ -1,8 +1,9 @@
 <script setup lang="ts">
 
 import SectionHeading from '@/components/SectionHeading.vue';
-//import SectionCategories from '@/components/SectionCategories.vue';
+import SectionCategories from '@/components/SectionCategories.vue';
 import SectionCommitments from '@/components/SectionCommitments.vue';
+import ScrollingButton from '@/sub-components/ScrollingButton.vue';
 
 </script>
 
@@ -13,16 +14,17 @@ import SectionCommitments from '@/components/SectionCommitments.vue';
                 <SectionHeading />
             </div>
         </div>
-        <!-- <div class="section-container">
+        <div class="section-container">
             <div class="section-heading">
-                <div class="head-content">
-                    <h1>Our categories</h1>
-                </div>
+                <h1>Our categories</h1>
+                <ScrollingButton />
             </div>
             <div class="content">
-                <SectionCategories />
+                <div class="section-content">
+                    <SectionCategories/>
+                </div>
             </div>
-        </div> -->
+        </div>
         <div class="section-container">
             <div class="section-heading">
                 <h1>Order, get, enjoy</h1>
@@ -55,10 +57,14 @@ import SectionCommitments from '@/components/SectionCommitments.vue';
         align-items: center;
 
         .section-heading {
-            padding: 0 1rem;
             width: 100%;
-            display: flex;
             max-width: 75rem;
+            padding: 0 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: space-between;
+            align-items: center;
 
             h1 {
                 font-size: clamp(3rem, 7vw, 5rem);

@@ -33,7 +33,8 @@ const scrollToTop = (): void => {
     transition: transform .3s ease-in-out;
 
     &:hover {
-        transform: rotate(360deg)
+        transform: rotate(360deg);
+        border-color: $accent1;
     } 
 
     p {

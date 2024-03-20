@@ -89,7 +89,7 @@ footer {
             .toTop-button {
                 position: absolute;
                 bottom: 0;
-                right: 1rem;
+                right: 0;
                 color: $blackColor;
             }
         }

@@ -17,7 +17,13 @@ const sortedProducts = products.sort((a, b) => {
     const dateB = new Date(`${b.reference_year}-${b.reference_month}`);
     
     // trie les produits par date de référence, les plus récents d'abord
-    return dateB.getTime() - dateA.getTime();
+    if (dateA > dateB) {
+        return -1; // si dateA plus récente se place avant dateB
+    } else if (dateA < dateB) {
+        return 1; // si dateB plus récente se place avant dateA
+    } else {
+        return products.indexOf(a) - products.indexOf(b); // si dates identiques, se placent dans l'ordre de leurs index
+    }
 });
 
 // conserve les 4 produits les plus récents pour les afficher

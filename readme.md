@@ -27,7 +27,7 @@ margin-bottom: 1rem;"></div>
 <p style="margin: 0;">>> AmpliFury-MusicStore is an app which is connected to a backend server made with NodeJS /Express and a MySQL relationnal database. This repo only show the frontend part of the project.</p>
 
 <h4 style="color: grey; font-size: 1.2rem">Frontend setup</h4>
-<p style="margin: 0;">>> The frontend is developed using Vite and Vue3 in Typescript with Sass for styling.</p>
+<p style="margin: 0;">>> The frontend is developed using Vue3 and Typescript, with Sass for styling.</p>
 
 <h4 style="color: grey; font-size: 1.2rem">Getting started</h4>
 <p style="margin: 0;">>> Clone the repository.</p>
@@ -44,6 +44,7 @@ npm run dev
 
 <h4 style="color: grey; font-size: 1.2rem">Additionnal notes</h4>
 <p style="margin: 0;">>> Ensure that NodeJS and npm are installed on your system.</p>
+<p style="margin: 0;">>> All the pictures are AI generated.</p>
 
 <h4 style="color: grey; font-size: 1.2rem">Project Presentation</h4>
 <p style="margin: 0 0 3rem 0;">>> <strong>Demo:</strong>

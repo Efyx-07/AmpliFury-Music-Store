@@ -17,6 +17,34 @@ body {
     margin: 0 auto;
     background: $whiteColor;
     color: $blackColor;
+
+    /* Customize the scrollbar color and width */
+    scrollbar-color: $accent1;
+    scrollbar-width: 12px;
+}
+
+body::-webkit-scrollbar {
+    width: .75rem;               
+}
+
+body::-webkit-scrollbar-track {
+    background: $whiteColor;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: $accent1;    /* color of the scroll thumb */
+    border-radius: 10px;       /* roundness of the scroll thumb */
+    border: 3px solid $whiteColor;  /* creates padding around scroll thumb */
+}
+
+body::-moz-scrollbar-track {
+    background: $whiteColor;
+}
+
+body::-moz-scrollbar-thumb {
+    background: $accent1;
+    border-radius: 100%;
+    border: 3px solid $whiteColor;
 }
 
 h1, h2, h3, p {
